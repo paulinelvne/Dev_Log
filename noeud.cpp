@@ -30,7 +30,22 @@ void noeud::insertion(int fct, noeud* nd){
 };
 
 void noeud::deletion(){
-    //il faut que je trouve comment je pointe sur aucun noeud
+    //je n'ai pas trouvé comment dire au noeud du dessus que this est supprimé 
+    //Peut être rajouté une valeur_ genre 6 ou ca serait le vide
+    //Ouais mais non ca ne marcherait pas non plus 
+    //Je réfléchis
+    //J'ai peut être trouvé, je pense qu'il faut quand même qu'on en parle
+
+    if(mere_->fille1_ == this){
+        mere_->fille1_ = NULL;
+    }
+    else{
+        mere_->fille2_;
+    }
+
+    fille1_ = NULL;
+    fille2_ = NULL;
+    mere_ = NULL;
 };
 
 void noeud::remplacement(noeud* nd){
@@ -41,7 +56,26 @@ void noeud::remplacement(noeud* nd){
 };
 
 bool noeud::viabilite(){
-    return true;
+    if(valeur_ == 3 || valeur_ == 4){
+        if(fille1_ != NULL && fille2_ != NULL){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    else if(valeur_ == 5){
+        if(fille1_ != NULL && fille2_ != NULL){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    else{
+        return false;
+    }
 };
 
 
