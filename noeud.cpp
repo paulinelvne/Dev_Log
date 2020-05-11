@@ -40,7 +40,7 @@ void noeud::deletion(){
         mere_->fille1_ = NULL;
     }
     else{
-        mere_->fille2_;
+        mere_->fille2_ = NULL;
     }
 
     fille1_ = NULL;
