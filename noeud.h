@@ -1,3 +1,5 @@
+#include <cstddef>
+
 class noeud{
 
 public:
@@ -11,15 +13,15 @@ public:
 //Fonctions
 	void insertion(int fct, noeud* nd);
     void deletion();
-    void remplacement();
+    void remplacement(noeud* nd);
     bool viabilite();
 
 
 protected:
 
-    noeud* fille1_;
-    noeud* fille2_;
-    noeud* mere_;
+    noeud* fille1_ = NULL;
+    noeud* fille2_ = NULL;
+    noeud* mere_ = NULL;
     int valeur_;
 	
 };

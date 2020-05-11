@@ -33,8 +33,11 @@ void noeud::deletion(){
     //il faut que je trouve comment je pointe sur aucun noeud
 };
 
-void noeud::remplacement(){
-
+void noeud::remplacement(noeud* nd){
+    fille1_ = nd->fille1_;
+    fille2_ = nd->fille2_;
+    mere_ = nd->mere_;
+    valeur_ = nd->valeur_;
 };
 
 bool noeud::viabilite(){
@@ -42,8 +45,4 @@ bool noeud::viabilite(){
 };
 
 
-
-
-
-
-
+//Dans cette version, AND sera 3, OR sera 4, NOT sera 5
