@@ -16,4 +16,6 @@ public:
 	int nbr_mutation();
 	void select_aleatoire();
 	bool formule_globale();
+	
+friend bool transforme(int xA, int ope, int xB);
 };
