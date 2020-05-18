@@ -1,4 +1,5 @@
 #include "noeud.h"
+#include <experimental/random>
 
 //Constructor
 noeud::noeud(noeud* f1, noeud* f2, noeud* m, int val, int id){
@@ -21,7 +22,7 @@ noeud::noeud(noeud* f1, noeud* f2, noeud* m, int val, int id){
         break;
         default:
             str_ = "pas de valeur de fonction";
-}
+    }
 
 
 };
@@ -119,7 +120,7 @@ void noeud::put_str(std::string str){
 
 
 //Fonctions
-void noeud::insertion(int fct, noeud* nd){
+void noeud::insertion(noeud* nd){
 
     //reactualisation du noeud présent
     if(mere_ != NULL){
@@ -175,6 +176,25 @@ void noeud::remplacement(noeud* nd){
     fille1_ = NULL;
     fille2_ = NULL;
     mere_ = NULL;
+};
+
+void noeud::mute(noeud* nd){
+    int rd = std::experimental::randint(1,3);
+    
+    //ici on choisit que 1 sera l'insertion, 2 le remplacement et 3 la délétion
+    switch(rd) {
+        case 1:
+            this->insertion(nd);
+        break;
+        case 2:
+            this->remplacement(nd);
+        break;
+        case 3:
+            this->deletion();
+        break;
+        //default:
+            
+    }
 };
 
 bool noeud::viabilite(){

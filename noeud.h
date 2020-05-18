@@ -30,10 +30,11 @@ public:
     
 
 //Fonctions
-	void insertion(int fct, noeud* nd);
+	void insertion(noeud* nd);
     void deletion();
     void remplacement(noeud* nd);
     bool viabilite();
+    void mute(noeud* nd);
 
 //Opérateurs
 
