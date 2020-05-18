@@ -68,16 +68,16 @@ int noeud::read_id_mere(){
     }
 };
 
-noeud** noeud::read_fille1(){
-    return &fille1_;
+noeud* noeud::read_fille1(){
+    return fille1_;
 };
 
-noeud** noeud::read_fille2(){
-    return &fille2_;
+noeud* noeud::read_fille2(){
+    return fille2_;
 };
 
-noeud** noeud::read_mere(){
-    return &mere_;
+noeud* noeud::read_mere(){
+    return mere_;
 };
 
 
