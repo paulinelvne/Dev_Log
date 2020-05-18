@@ -1,11 +1,28 @@
 #include "noeud.h"
 
 //Constructor
-noeud::noeud(noeud* f1, noeud* f2, noeud* m, int val){
+noeud::noeud(noeud* f1, noeud* f2, noeud* m, int val, int id){
+    //Dans un premier temps, le soin de l'identitfiant est laissé à l'utilisateur de la classe
     fille1_ = f1;
     fille2_ = f2;
     mere_ = m;
     valeur_ = val;
+    id_ = id;
+
+    switch(valeur_) {
+        case 3:
+            str_ = "x1 AND x2";
+        break;
+        case 4:
+            str_ = "x1 OR x2";
+        break;
+        case 5:
+            str_ = "NOT x1";
+        break;
+        default:
+            str_ = "pas de valeur de fonction";
+}
+
 
 };
 
@@ -18,29 +35,122 @@ noeud::~noeud(){
     
 };
 
+//Affichage
+int noeud::read_valeur(){
+    return this->valeur_;
+};
+
+int noeud::read_id_fille1(){
+    if(fille1_ == NULL){
+        return 0;
+    }
+    else{
+        return fille1_->id_;
+    }
+    
+};
+
+int noeud::read_id_fille2(){
+    if(fille2_ == NULL){
+        return 0;
+    }
+    else{
+        return fille2_-> id_;
+    }
+};
+    
+int noeud::read_id_mere(){
+    if(mere_ == NULL){
+        return 0;
+    }
+    else{
+        return mere_-> id_;
+    }
+};
+
+noeud** noeud::read_fille1(){
+    return &fille1_;
+};
+
+noeud** noeud::read_fille2(){
+    return &fille2_;
+};
+
+noeud** noeud::read_mere(){
+    return &mere_;
+};
+
+
+int noeud::read_id(){
+    return id_;
+};
+    
+std::string noeud::read_str(){
+    return str_;
+};
+
+void noeud::put_mere(noeud* nd){
+    mere_ = nd;
+};
+   
+void noeud::put_fille1(noeud* nd){
+    fille1_ = nd;
+};
+    
+void noeud::put_fille2(noeud* nd){
+    fille2_ = nd;
+};
+    
+void noeud::put_valeur(int val){
+    valeur_ = val;
+};
+
+void noeud::put_id(int id){
+    id_ = id;
+};
+    
+void noeud::put_str(std::string str){
+    str_ = str;
+};
+
+//Opérateur
+
+
+
+
+//Fonctions
 void noeud::insertion(int fct, noeud* nd){
 
-    //creation du nouveau noeud dans l'insertion
-    noeud new_noeud(this, nd, mere_, fct);
-    //new_noeud(this, nd, mere_, fct);
+    //reactualisation du noeud présent
+    if(mere_ != NULL){
+        if(mere_->fille1_->id_ == id_){
+            mere_->fille1_ = nd;
+        }
+        else{
+            mere_->fille2_ = nd;
+        }
+    }
+    
+    nd->mere_ = mere_;
+    mere_ = nd;
 
-    //reactulisation du noeud présent
-    *mere_ = new_noeud;
+    if(nd->fille1_ == NULL){
+        nd->fille1_ = this;
+    }
+    else{
+        nd->fille2_ = this;
+    }  
 
 };
 
 void noeud::deletion(){
-    //je n'ai pas trouvé comment dire au noeud du dessus que this est supprimé 
-    //Peut être rajouté une valeur_ genre 6 ou ca serait le vide
-    //Ouais mais non ca ne marcherait pas non plus 
-    //Je réfléchis
-    //J'ai peut être trouvé, je pense qu'il faut quand même qu'on en parle
-
-    if(mere_->fille1_ == this){
+    if(mere_ != NULL){
+        if(mere_->fille1_->id_ == id_){
         mere_->fille1_ = NULL;
-    }
-    else{
-        mere_->fille2_ = NULL;
+        }
+        else{
+            mere_->fille2_ = NULL;
+        }
     }
 
     fille1_ = NULL;
@@ -49,10 +159,22 @@ void noeud::deletion(){
 };
 
 void noeud::remplacement(noeud* nd){
-    fille1_ = nd->fille1_;
-    fille2_ = nd->fille2_;
-    mere_ = nd->mere_;
-    valeur_ = nd->valeur_;
+    nd->mere_ = mere_;
+    nd->fille1_ = fille1_;
+    nd->fille2_ = fille2_;
+
+    if(mere_ != NULL){
+        if(mere_->fille1_->id_ == id_){
+            mere_->fille1_ = nd;
+        }
+        else{
+            mere_->fille2_ = nd;
+        }
+    }
+
+    fille1_ = NULL;
+    fille2_ = NULL;
+    mere_ = NULL;
 };
 
 bool noeud::viabilite(){
