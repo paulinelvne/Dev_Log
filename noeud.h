@@ -25,8 +25,8 @@ public:
     void put_fille1(noeud* nd);
     void put_fille2(noeud* nd);
     void put_valeur(int val);
-    void put_id(int id);
     void put_str(std::string str);
+    void put_id(int id);
     
 
 //Fonctions

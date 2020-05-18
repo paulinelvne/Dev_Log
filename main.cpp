@@ -106,4 +106,7 @@ int main(){
     std::cout << noeud2->read_id() << std::endl;
     std::cout << noeud2->read_str() << std::endl;
 
+    delete noeud1;
+    delete noeud2;
+
 } 
