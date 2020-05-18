@@ -15,9 +15,9 @@ public:
     int read_id_fille1();
     int read_id_fille2();
     int read_id_mere();
-    noeud** read_fille1();
-    noeud** read_fille2();
-    noeud** read_mere();
+    noeud* read_fille1();
+    noeud* read_fille2();
+    noeud* read_mere();
     int read_id();
     std::string read_str();
     
