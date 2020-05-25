@@ -11,21 +11,22 @@ noeud::noeud(noeud* f1, noeud* f2, noeud* m, int val, int id){
     valeur_ = val;
     id_ = id;
 
-    //Attribution de la fonction AND, OR ou NOT en fonction de la valeur entrée en numérique
-    //AND sera 3, OR sera 4, NOT sera 5
-    switch(valeur_) {
-        case 3:
-            str_ = "x1 AND x2";
-        break;
-        case 4:
-            str_ = "x1 OR x2";
-        break;
-        case 5:
-            str_ = "NOT x1";
-        break;
-        default:
-            str_ = "pas de valeur de fonction";
-    }
+    // //Attribution de la fonction AND, OR ou NOT en fonction de la valeur entrée en numérique
+    // //AND sera 3, OR sera 4, NOT sera 5
+    // switch(valeur_) {
+    //     case 3:
+    //         str_ = "x1 AND x2";
+    //     break;
+    //     case 4:
+    //         str_ = "x1 OR x2";
+    //     break;
+    //     case 5:
+    //         str_ = "NOT x1";
+    //     break;
+    //     default:
+    //         str_ = "pas de valeur de fonction";
+    // }
+    //NOUVELLE FONCTION
 
 
 };
@@ -106,17 +107,47 @@ std::string noeud::read_str(){
 
 void noeud::put_mere(noeud* nd){
     //permet de modifier la mere
+    if(mere_ != NULL){
+            if(mere_->fille1_->id_ == id_){ //on regarde sur quelle branche 1 ou 2 de la mère se trouve le noeud
+                mere_->fille1_ = NULL; //réattribution de la nouvelle fille à la mère si le noeud présent était sa fille1
+            }
+            else{
+                mere_->fille2_ = NULL; //réattribution de la nouvelle fille à la mère si le noeud présent était sa fille2
+            }
+        }
+
     mere_ = nd;
+
+    if(nd->fille1_ == NULL){
+        nd->fille1_ = this;
+    }
+    else{
+        nd->fille2_ = this;
+    }
 };
    
 void noeud::put_fille1(noeud* nd){
     //permet de modifier la fille1
+
+    if(fille1_ != NULL){
+        fille1_->mere_ = NULL;
+    }
+
     fille1_ = nd;
+
+    nd->mere_ = this;
+
 };
     
 void noeud::put_fille2(noeud* nd){
     //permet de modifier la fille2
+    if(fille2_ != NULL){
+        fille2_->mere_ = NULL;
+    }
+
     fille2_ = nd;
+
+    nd->mere_ = this;
 };
     
 void noeud::put_valeur(int val){
