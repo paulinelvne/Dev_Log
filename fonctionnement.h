@@ -1,6 +1,8 @@
 using namespace std; 
 #include "noeud.cpp"
 #include <vector>
+#include "formule.cpp"
+
 class fonctionnement{
 
 public:
@@ -23,7 +25,7 @@ public:
 	void lecture();
 	
 	//Sélection du meilleur mutant  
-	//formule selection(); 
+	formule selection(vector<noeud> mutant); 
 	
 	//Synhtèse et affichage des résultats
 	void rendu(); 
