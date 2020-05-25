@@ -1,21 +1,35 @@
-#pragma once
+#include <vector>
 #include "noeud.h"
+#include <string>
+#ifndef DEF_formule
+#define DEF_formule
 
 
-using namespace std;
-
-class Formule
+class formule
 {
+
+
 private:
-	noeud contenu_;
+	std::vector<noeud*> contenu_;
 	int fitness_;
 protected:
 
 public:
+	formule();
+	formule(std::vector<noeud*> contenu, int fit);
+	formule(formule & autre);
+	~formule();
 	int fitness();
 	int nbr_mutation();
 	void select_aleatoire();
-	bool formule_globale();
+	int formule_globale();
+	std::string formule_globale_str();
+	void select_mutants(float taux_mut);
 	
-friend bool transforme(int xA, int ope, int xB);
+
+	
+friend int transforme(int xA, int ope, int xB);
+friend std::string transforme_str(noeud* xA, noeud* ope, noeud* xB=NULL);
+
 };
+#endif
