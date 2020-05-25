@@ -154,20 +154,21 @@ void noeud::put_valeur(int val){
     //permet de modifier la valeur de la fonction logique du noeud
     valeur_ = val;
 
-    //modifie alors automatiquement l'attribut str_ avec la bonne fonction logique
-    switch(valeur_) {
-        case 3:
-            str_ = "x1 AND x2";
-        break;
-        case 4:
-            str_ = "x1 OR x2";
-        break;
-        case 5:
-            str_ = "NOT x1";
-        break;
-        default:
-            str_ = "pas de valeur de fonction";
-    }
+    // //modifie alors automatiquement l'attribut str_ avec la bonne fonction logique
+    // switch(valeur_) {
+    //     case 3:
+    //         str_ = "x1 AND x2";
+    //     break;
+    //     case 4:
+    //         str_ = "x1 OR x2";
+    //     break;
+    //     case 5:
+    //         str_ = "NOT x1";
+    //     break;
+    //     default:
+    //         str_ = "pas de valeur de fonction";
+    // }
+    //NOUVELLE FONCTION
 };
 
 void noeud::put_str(std::string str){
