@@ -75,8 +75,8 @@ void fonctionnement::lecture(){
 //Selection
 formule fonctionnement::selection(vector<formule> mutant, int n){
 	formule best_mutant = mutant[0];
-	for(int i = 1, i=n, i++){
-		if(mutant[i].fitness_ < best_mutant.fitness_ ){
+	for(int i = 1; i<=n; i++){
+		if(abs(mutant[i].fitness()) < abs(best_mutant.fitness() )){
 			best_mutant = mutant[i];
 		}
 	}

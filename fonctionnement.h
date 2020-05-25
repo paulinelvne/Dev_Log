@@ -25,7 +25,7 @@ public:
 	void lecture();
 	
 	//Sélection du meilleur mutant  
-	formule selection(vector<noeud> mutant); 
+	formule selection(vector<formule> mutant, int n); 
 	
 	//Synhtèse et affichage des résultats
 	void rendu(); 
