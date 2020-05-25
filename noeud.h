@@ -1,5 +1,7 @@
 #include <cstddef>
 #include <string>
+#ifndef DEF_noeud
+#define DEF_noeud
 
 class noeud{
 
@@ -49,3 +51,5 @@ protected:
     int id_;
 	
 };
+
+#endif 
