@@ -39,6 +39,7 @@ public:
     void mute(noeud* nd);
 
 //Opérateurs
+    void operator=(noeud* nd);
 
 
 protected:

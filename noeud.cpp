@@ -182,7 +182,14 @@ void noeud::put_id(int id){
 
 //Opérateur
 
-
+void noeud::operator=(noeud* nd){
+    nd->mere_ = mere_;
+    nd->fille1_ = fille1_;
+    nd->fille2_ = fille2_;
+    nd->valeur_ = valeur_;
+    nd->str_ = str_;
+    nd->id_ = id_;
+};
 
 
 //Fonctions
