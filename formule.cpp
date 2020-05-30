@@ -64,16 +64,16 @@ int formule::formule_globale()
 	{
 		if((contenu_[i]->read_fille1() == NULL) && (contenu_[i]->read_fille2() == NULL))
 		{
-			base_t.push_back(contenu_[i]);
+			base_t.push_back(contenu_[i]); // Je remplis la base de l'arbre avec les noeuds qui n'ont pas d'enfants
 			
 		}
 	}
 	
 	int a = base_t.size();
 
-	if((a==1) && (((base_t[0]->read_mere()))->read_valeur()==4))
+	if((a==1) && (((base_t[0]->read_mere()))->read_valeur()==5)) // Cas où la base n'a qu'un noeud
 			{
-				return(transforme((base_t[0]->read_valeur()), 4));
+				return(transforme((base_t[0]->read_valeur()), 5));
 			}
 	
 	
@@ -95,7 +95,7 @@ int formule::formule_globale()
 			if(((base_t[i]->read_mere())->read_id()) == ((base_t[i+1]->read_mere())->read_id()))
 			{
 				(base_t[i]->read_mere())->put_valeur(transforme((base_t[i])->read_valeur(), (base_t[i]->read_mere())->read_valeur(), (base_t[i+1])->read_valeur()));
-				
+				// la mère prend la valeur de ses deux noeuds 
 				noeud * a_push = base_t[i]->read_mere();
 				new_base.push_back(a_push);
 				a_supprimer.push_back(i);
