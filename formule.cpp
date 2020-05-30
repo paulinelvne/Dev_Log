@@ -69,7 +69,6 @@ int formule::formule_globale()
 		}
 	}
 	
-	std::cout << base_t.size() << std::endl ;
 	int a = base_t.size();
 
 	if((a==1) && (((base_t[0]->read_mere()))->read_valeur()==4))
@@ -97,26 +96,22 @@ int formule::formule_globale()
 			{
 				(base_t[i]->read_mere())->put_valeur(transforme((base_t[i])->read_valeur(), (base_t[i]->read_mere())->read_valeur(), (base_t[i+1])->read_valeur()));
 				
-				noeud * a_push = base_t[0]->read_mere();
+				noeud * a_push = base_t[i]->read_mere();
 				new_base.push_back(a_push);
 				a_supprimer.push_back(i);
 				a_supprimer.push_back(i+1);
-				std::cout << "if" << std::endl;
 			}
 
-			else if((base_t[i]->read_mere() != base_t[i+1]->read_mere()) && (((base_t[i]->read_mere()))->read_valeur()==4))
+			else if((base_t[i]->read_mere() != base_t[i+1]->read_mere()) && (((base_t[i]->read_mere()))->read_valeur()==5))
 			{
-				std::cout << "elif" << std::endl;
 				(base_t[i]->read_mere())->put_valeur(transforme(base_t[i]->read_valeur(), 4));
-				noeud * a_push = base_t[0]->read_mere();
+				noeud * a_push = base_t[i]->read_mere();
 				new_base.push_back(a_push);
 				a_supprimer.push_back(i);
-				std::cout << "elif" << std::endl;
 			}
 		}
 	
 		int asupsize = a_supprimer.size();
-		std::cout << "asup" << asupsize <<std::endl;
 		int snb = new_base.size();
 	
 		
@@ -128,18 +123,23 @@ int formule::formule_globale()
 		}
 		
 		
-		for(i=0; i < new_base.size(); i++)
+		for(i=0; i < snb; i++)
 		{	
 				base_t.push_back(new_base[i]);
 		}
 	
 		new_base.clear();
 
-		a = a - asupsize + snb -1 ;
-		std::cout << "a" << a << std::endl ;
+		a = a - asupsize + snb ;
+	}
+		while(base_t[0]->read_mere() != NULL) // Je vérifie que le dernier noeud restant n'a pas en fait un NOT en parent
+	{
+		(base_t[0]->read_mere())->put_valeur(transforme(base_t[0]->read_valeur(), (base_t[0]->read_mere())->read_valeur()));
+		base_t[0]=base_t[0]->read_mere();
+	}
 	
 
-	}
+	
 	return(base_t[0]->read_valeur());
 	
 }

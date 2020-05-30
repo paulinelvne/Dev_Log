@@ -163,3 +163,192 @@ TEST(formule_globale_str, test3)
     EXPECT_EQ(f->formule_globale_str()=="(NOT(x1OR((x1ORx2)AND(NOTx1))))", 1);
 
 }
+
+TEST(formule_globale, test1)
+{
+    noeud* noeud1 = new noeud(NULL, NULL, NULL, 3, 140); //AND
+    noeud* noeud2 = new noeud(NULL, NULL, NULL , 4, 133); //OR
+    noeud* noeud3 = new noeud(NULL, NULL, NULL, 0, 134); //x1
+    noeud* noeud4 = new noeud(NULL, NULL, NULL, 1, 135); //x2
+    noeud* noeud5 = new noeud(NULL, NULL, NULL, 5, 136); //NOT
+    noeud* noeud6 = new noeud(NULL, NULL, NULL, 0, 137); //x1
+
+    noeud2->put_mere(noeud1);
+    noeud5->put_mere(noeud1);
+    noeud3->put_mere(noeud2);
+    noeud4->put_mere(noeud2);
+    noeud6->put_mere(noeud5);
+
+    noeud1->put_str("AND");
+    noeud2->put_str("OR");
+    noeud3->put_str("x1");
+    noeud4->put_str("x2");
+    noeud5->put_str("NOT");
+    noeud6->put_str("x1");
+    std::vector<noeud*> content = {noeud1, noeud2, noeud3, noeud4, noeud5, noeud6};
+    formule* f = new formule(content, 1000);
+    EXPECT_EQ(f->formule_globale(), 1);
+
+}
+
+TEST(formule_globale, test2)
+{
+    noeud* noeud1 = new noeud(NULL, NULL, NULL, 3, 140); //AND
+    noeud* noeud2 = new noeud(NULL, NULL, NULL , 4, 133); //OR
+    noeud* noeud3 = new noeud(NULL, NULL, NULL, 0, 134); //x1
+    noeud* noeud4 = new noeud(NULL, NULL, NULL, 1, 135); //x2
+    noeud* noeud5 = new noeud(NULL, NULL, NULL, 5, 136); //NOT
+    noeud* noeud6 = new noeud(NULL, NULL, NULL, 0, 137); //x1
+    noeud* noeud7 = new noeud(NULL, NULL, NULL, 4, 138); //OR
+    noeud* noeud8 = new noeud(NULL, NULL, NULL, 0, 139); //x1
+
+
+    noeud2->put_mere(noeud1);
+    noeud5->put_mere(noeud1);
+    noeud3->put_mere(noeud2);
+    noeud4->put_mere(noeud2);
+    noeud6->put_mere(noeud5);
+    noeud1->put_mere(noeud7);
+    noeud8->put_mere(noeud7);
+
+    noeud1->put_str("AND");
+    noeud2->put_str("OR");
+    noeud3->put_str("x1");
+    noeud4->put_str("x2");
+    noeud5->put_str("NOT");
+    noeud6->put_str("x1");
+    noeud5->put_str("NOT");
+    noeud6->put_str("x1");
+    noeud7->put_str("OR");
+    noeud8->put_str("x1");
+    std::vector<noeud*> content = {noeud1, noeud2, noeud3, noeud4, noeud5, noeud6, noeud7, noeud8};
+    formule* f = new formule(content, 1000);
+    EXPECT_EQ(f->formule_globale(), 1);
+}
+
+
+
+TEST(formule_globale, test3)
+{
+    noeud* noeud1 = new noeud(NULL, NULL, NULL, 3, 140); //AND
+    noeud* noeud2 = new noeud(NULL, NULL, NULL , 4, 133); //OR
+    noeud* noeud3 = new noeud(NULL, NULL, NULL, 0, 134); //x1
+    noeud* noeud4 = new noeud(NULL, NULL, NULL, 1, 135); //x2
+    noeud* noeud5 = new noeud(NULL, NULL, NULL, 5, 136); //NOT
+    noeud* noeud6 = new noeud(NULL, NULL, NULL, 0, 137); //x1
+    noeud* noeud7 = new noeud(NULL, NULL, NULL, 4, 138); //OR
+    noeud* noeud8 = new noeud(NULL, NULL, NULL, 0, 139); //x1
+    noeud* noeud9 = new noeud(NULL, NULL, NULL, 5, 141); //NOT
+
+    noeud2->put_mere(noeud1);
+    noeud5->put_mere(noeud1);
+    noeud3->put_mere(noeud2);
+    noeud4->put_mere(noeud2);
+    noeud6->put_mere(noeud5);
+    noeud1->put_mere(noeud7);
+    noeud8->put_mere(noeud7);
+    noeud7->put_mere(noeud9);
+
+    noeud1->put_str("AND");
+    noeud2->put_str("OR");
+    noeud3->put_str("x1");
+    noeud4->put_str("x2");
+    noeud5->put_str("NOT");
+    noeud6->put_str("x1");
+    noeud5->put_str("NOT");
+    noeud6->put_str("x1");
+    noeud7->put_str("OR");
+    noeud8->put_str("x1");
+    noeud9->put_str("NOT");
+    std::vector<noeud*> content = {noeud1, noeud2, noeud3, noeud4, noeud5, noeud6, noeud7, noeud8, noeud9};
+    formule* f = new formule(content, 1000);
+    EXPECT_EQ(f->formule_globale(), 0);
+
+}
+
+
+TEST(formule_globale, test4)
+{
+    noeud* noeud1 = new noeud(NULL, NULL, NULL, 3, 140); //AND
+    noeud* noeud2 = new noeud(NULL, NULL, NULL , 4, 133); //OR
+    noeud* noeud3 = new noeud(NULL, NULL, NULL, 0, 134); //x1
+    noeud* noeud4 = new noeud(NULL, NULL, NULL, 1, 135); //x2
+    noeud* noeud6 = new noeud(NULL, NULL, NULL, 0, 137); //x1
+
+    noeud2->put_mere(noeud1);
+    noeud3->put_mere(noeud2);
+    noeud4->put_mere(noeud2);
+    noeud6->put_mere(noeud1);
+
+    noeud1->put_str("AND");
+    noeud2->put_str("OR");
+    noeud3->put_str("x1");
+    noeud4->put_str("x2");
+    noeud6->put_str("x1");
+    std::vector<noeud*> content = {noeud1, noeud2, noeud3, noeud4, noeud6};
+    formule* f = new formule(content, 1000);
+    EXPECT_EQ(f->formule_globale(), 0);
+
+}
+
+TEST(formule_globale, test5)
+{
+    noeud* noeud1 = new noeud(NULL, NULL, NULL, 3, 140); //AND
+    noeud* noeud2 = new noeud(NULL, NULL, NULL , 4, 133); //OR
+    noeud* noeud3 = new noeud(NULL, NULL, NULL, 1, 134); //x1
+    noeud* noeud4 = new noeud(NULL, NULL, NULL, 1, 135); //x2
+    noeud* noeud6 = new noeud(NULL, NULL, NULL, 1, 137); //x1
+
+    noeud2->put_mere(noeud1);
+    noeud3->put_mere(noeud2);
+    noeud4->put_mere(noeud2);
+    noeud6->put_mere(noeud1);
+
+    noeud1->put_str("AND");
+    noeud2->put_str("OR");
+    noeud3->put_str("x1");
+    noeud4->put_str("x2");
+    noeud6->put_str("x1");
+    std::vector<noeud*> content = {noeud1, noeud2, noeud3, noeud4, noeud6};
+    formule* f = new formule(content, 1000);
+    EXPECT_EQ(f->formule_globale(), 1);
+
+}
+
+TEST(formule_globale, test6)
+{
+    noeud* noeud1 = new noeud(NULL, NULL, NULL, 3, 140); //AND
+    noeud* noeud2 = new noeud(NULL, NULL, NULL , 4, 133); //OR
+    noeud* noeud3 = new noeud(NULL, NULL, NULL, 1, 134); //x1
+    noeud* noeud4 = new noeud(NULL, NULL, NULL, 0, 135); //x2
+    noeud* noeud5 = new noeud(NULL, NULL, NULL, 5, 136); //NOT
+    noeud* noeud6 = new noeud(NULL, NULL, NULL, 0, 137); //x1
+    noeud* noeud7 = new noeud(NULL, NULL, NULL, 4, 138); //OR
+    noeud* noeud8 = new noeud(NULL, NULL, NULL, 1, 139); //x1
+    noeud* noeud9 = new noeud(NULL, NULL, NULL, 5, 141); //NOT
+
+    noeud2->put_mere(noeud1);
+    noeud5->put_mere(noeud1);
+    noeud3->put_mere(noeud2);
+    noeud4->put_mere(noeud2);
+    noeud6->put_mere(noeud5);
+    noeud1->put_mere(noeud7);
+    noeud8->put_mere(noeud7);
+    noeud7->put_mere(noeud9);
+
+    noeud1->put_str("AND");
+    noeud2->put_str("OR");
+    noeud3->put_str("x1");
+    noeud4->put_str("x2");
+    noeud5->put_str("NOT");
+    noeud6->put_str("x1");
+    noeud5->put_str("NOT");
+    noeud6->put_str("x1");
+    noeud7->put_str("OR");
+    noeud8->put_str("x1");
+    noeud9->put_str("NOT");
+    std::vector<noeud*> content = {noeud1, noeud2, noeud3, noeud4, noeud5, noeud6, noeud7, noeud8, noeud9};
+    formule* f = new formule(content, 1000);
+    EXPECT_EQ(f->formule_globale(), 0);
+
+}
