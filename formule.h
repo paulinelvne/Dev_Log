@@ -20,8 +20,6 @@ public:
 	formule(formule & autre);
 	~formule();
 	int fitness();
-	int nbr_mutation();
-	void select_aleatoire();
 	int formule_globale();
 	std::string formule_globale_str();
 	void select_mutants(float taux_mut);
