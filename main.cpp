@@ -108,5 +108,6 @@ int main(){
 
     delete noeud1;
     delete noeud2;
+    delete noeud3;
 
 } 
