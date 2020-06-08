@@ -100,9 +100,10 @@ vector<bool> fonctionnement::StockBool(string line){
 		T_string ++;
 		i++;
 	}
+	this->nb_ligne =T_string - 23;			//donne le nb de ligne du fichier d'entré, -23 car les 23 premiers caractères sont l'entête des lignes
 	vector<bool> ret;
 	int compteur = 0;
-	for(int j=23;j<T_string;j++){
+	for(int j=23;j<T_string;j++){			//j=23 car format en-tête des lignes tjrs égale et de 23 caractères.
         	if(line[j]=='1'){
 			ret.push_back(1);
 			compteur ++;
