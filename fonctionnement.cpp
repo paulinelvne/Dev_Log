@@ -64,6 +64,31 @@ for (int j = 0;j<taille_formule;j++)
 return sac_;
 }
 
+//nomme_noeud
+void fonctionnement::nomme_noeuds()
+{
+  string str = "X";
+  for (int i=0;i<577;i++)
+  {
+    if(sac_[0][i].read_valeur() == 3 )
+    {
+      sac_[0][i].put_str("AND");
+    }
+    if(sac_[0][i].read_valeur() == 4 )
+    {
+      sac_[0][i].put_str("OR");
+    }
+    if(sac_[0][i].read_valeur() == 5 )
+    {
+      sac_[0][i].put_str("NOT");
+    }
+    else
+    {
+      std::string s = std::to_string(i);
+      str = str + s;
+    }
+  }
+}
 
 
 //Lecture et stockage de chaque ligne du .csv
