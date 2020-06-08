@@ -2,7 +2,7 @@
 #include <experimental/random>
 
 //Constructor
-noeud::noeud(noeud* f1, noeud* f2, noeud* m, int val, int id){
+noeud::noeud(noeud* f1, noeud* f2, noeud* m, std::vector<int> val, int id){
     //Dans un premier temps, le soin de l'identitfiant est laissé à l'utilisateur de la classe
     //Définition des attributs avec les objets entrés en paramètre
     fille1_ = f1;
@@ -41,8 +41,8 @@ noeud::~noeud(){
 };
 
 //Affichage
-int noeud::read_valeur(){
-    return this->valeur_;
+int noeud::read_valeur(int i){
+    return this->valeur_[i];
 };
 
 int noeud::read_id_fille1(){
@@ -149,10 +149,23 @@ void noeud::put_fille2(noeud* nd){
 
     nd->mere_ = this;
 };
+
     
-void noeud::put_valeur(int val){
-    //permet de modifier la valeur de la fonction logique du noeud
-    valeur_ = val;
+void noeud::put_valeur(int val, int n){
+    //permet de modifier la valeur de la fonction logique du noeud où n est la taille de X
+    if(val==3 || val==4 || val==5){
+        for(int i = 0; i<=n; i++){
+            valeur_[i] = val;
+        }
+
+    }
+
+    //permet de modifier la valeur du noeud de base xi
+    if(val==0 || val==1){
+        valeur_[n] = val;
+    }
+    
+        
 
     // //modifie alors automatiquement l'attribut str_ avec la bonne fonction logique
     // switch(valeur_) {
@@ -271,7 +284,7 @@ void noeud::mute(noeud* nd){
 };
 
 bool noeud::viabilite(){
-    if(valeur_ == 3 || valeur_ == 4){ //si on a un AND ou un OR, 
+    if(valeur_[0] == 3 || valeur_[0] == 4){ //si on a un AND ou un OR, 
         if(fille1_ != NULL && fille2_ != NULL){ //il est nécessaire d'y avoir deux filles pour que la fonction soit correcte
             return true;
         }
@@ -279,7 +292,7 @@ bool noeud::viabilite(){
             return false;
         }
     }
-    else if(valeur_ == 5){ //Par ailleurs, si l'on a un NOT,
+    else if(valeur_[0] == 5){ //Par ailleurs, si l'on a un NOT,
         if(fille1_ != NULL && fille2_ != NULL){ //Dans ce cas, si le noeud a deux filles, ce ne sera pas correct
             return false;
         }

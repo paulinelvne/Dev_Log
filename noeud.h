@@ -1,5 +1,6 @@
 #include <cstddef>
 #include <string>
+#include <vector>
 #ifndef DEF_noeud
 #define DEF_noeud
 
@@ -7,13 +8,13 @@ class noeud{
 
 public:
 //Constructor
-	noeud (noeud* f1, noeud* f2, noeud* m, int val, int id);
+	noeud (noeud* f1, noeud* f2, noeud* m, std::vector<int> val, int id);
 
 //Destructor
 	~noeud ();
 
 //Affichage
-    int read_valeur();
+    int read_valeur(int i);
     int read_id_fille1();
     int read_id_fille2();
     int read_id_mere();
@@ -26,7 +27,7 @@ public:
     void put_mere(noeud* nd);
     void put_fille1(noeud* nd);
     void put_fille2(noeud* nd);
-    void put_valeur(int val);
+    void put_valeur(int val, int n);
     void put_str(std::string str);
     void put_id(int id);
     
@@ -47,7 +48,7 @@ protected:
     noeud* fille1_ = NULL;
     noeud* fille2_ = NULL;
     noeud* mere_ = NULL;
-    int valeur_;
+    std::vector<int> valeur_;
     std::string str_;
     int id_;
 	

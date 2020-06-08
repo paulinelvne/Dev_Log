@@ -355,8 +355,9 @@
 // }
 
 TEST(Constructor, NoeudTestConstructor) {
-	noeud* noeud1 = new noeud(NULL, NULL, NULL, 4, 1);
-    EXPECT_TRUE(noeud1->read_valeur() == 4);
+    std::vector<int> vect1(4,4);
+	noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 1);
+    EXPECT_TRUE(noeud1->read_valeur(0) == 4);
     EXPECT_TRUE(noeud1->read_id_fille1() == 0);
     EXPECT_TRUE(noeud1->read_id_fille2() == 0);
     EXPECT_TRUE(noeud1->read_id_mere() == 0);
@@ -368,12 +369,14 @@ TEST(Constructor, NoeudTestConstructor) {
 }
 
 TEST(Insertion, NoeudTestInsertion) {
-    noeud* noeud1 = new noeud(NULL, NULL, NULL, 4, 1);
-    noeud* noeud2 = new noeud(NULL, NULL, NULL, 5, 2);
+    std::vector<int> vect1(4,4);
+    std::vector<int> vect2(5,5);
+    noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 1);
+    noeud* noeud2 = new noeud(NULL, NULL, NULL, vect2, 2);
 
     noeud1->insertion(noeud2);
     
-    EXPECT_TRUE(noeud1->read_valeur() == 4);
+    EXPECT_TRUE(noeud1->read_valeur(0) == 4);
     EXPECT_TRUE(noeud1->read_id_fille1() == 0);
     EXPECT_TRUE(noeud1->read_id_fille2() == 0);
     EXPECT_TRUE(noeud1->read_id_mere() == 2);
@@ -381,7 +384,7 @@ TEST(Insertion, NoeudTestInsertion) {
     EXPECT_TRUE(noeud1->read_fille1() == NULL);
     EXPECT_TRUE(noeud1->read_fille2() == NULL);
 
-    EXPECT_TRUE(noeud2->read_valeur() ==  5);
+    EXPECT_TRUE(noeud2->read_valeur(1) ==  5);
     EXPECT_TRUE(noeud2->read_id_fille1() == 1);
     EXPECT_TRUE(noeud2->read_id_fille2() == 0);
     EXPECT_TRUE(noeud2->read_id_mere() == 0);
@@ -391,12 +394,15 @@ TEST(Insertion, NoeudTestInsertion) {
 }
 
 TEST(Viabilite, NoeudTestViabilite) {
-    noeud* noeud1 = new noeud(NULL, NULL, NULL, 4, 1);
-    noeud* noeud2 = new noeud(NULL, NULL, NULL, 5, 2);
+    std::vector<int> vect1(4,4);
+    std::vector<int> vect2(5,5);
+    std::vector<int> vect3(3,3);
+    noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 1);
+    noeud* noeud2 = new noeud(NULL, NULL, NULL, vect2, 2);
 
     noeud1->insertion(noeud2);
 
-    noeud* noeud3 = new noeud(NULL, NULL, NULL, 3, 3);
+    noeud* noeud3 = new noeud(NULL, NULL, NULL, vect3, 3);
 
     noeud1->remplacement(noeud3);
 
@@ -405,16 +411,19 @@ TEST(Viabilite, NoeudTestViabilite) {
 }
 
 TEST(Remplacement, NoeudTestRemplacement) {
-    noeud* noeud1 = new noeud(NULL, NULL, NULL, 4, 1);
-    noeud* noeud2 = new noeud(NULL, NULL, NULL, 5, 2);
+    std::vector<int> vect1(4,4);
+    std::vector<int> vect2(5,5);
+    std::vector<int> vect3(3,3);
+    noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 1);
+    noeud* noeud2 = new noeud(NULL, NULL, NULL, vect2, 2);
 
     noeud1->insertion(noeud2);
 
-    noeud* noeud3 = new noeud(NULL, NULL, NULL, 3, 3);
+    noeud* noeud3 = new noeud(NULL, NULL, NULL, vect3, 3);
 
     noeud1->remplacement(noeud3);
 
-    EXPECT_TRUE(noeud1->read_valeur() == 4);
+    EXPECT_TRUE(noeud1->read_valeur(0) == 4);
     EXPECT_TRUE(noeud1->read_id_fille1() == 0);
     EXPECT_TRUE(noeud1->read_id_fille2() == 0);
     EXPECT_TRUE(noeud1->read_id_mere() == 0);
@@ -423,7 +432,7 @@ TEST(Remplacement, NoeudTestRemplacement) {
     EXPECT_TRUE(noeud1->read_fille2() == NULL);
     EXPECT_TRUE(noeud1->read_mere() == NULL);
 
-    EXPECT_TRUE(noeud2->read_valeur() ==  5);
+    EXPECT_TRUE(noeud2->read_valeur(0) ==  5);
     EXPECT_TRUE(noeud2->read_id_fille1() == 3);
     EXPECT_TRUE(noeud2->read_id_fille2() == 0);
     EXPECT_TRUE(noeud2->read_id_mere() == 0);
@@ -431,7 +440,7 @@ TEST(Remplacement, NoeudTestRemplacement) {
     EXPECT_TRUE(noeud2->read_mere() == NULL);
     EXPECT_TRUE(noeud2->read_fille2() == NULL);
 
-    EXPECT_TRUE(noeud3->read_valeur() == 3);
+    EXPECT_TRUE(noeud3->read_valeur(0) == 3);
     EXPECT_TRUE(noeud3->read_id_fille1() == 0);
     EXPECT_TRUE(noeud3->read_id_fille2() == 0);
     EXPECT_TRUE(noeud3->read_id_mere() == 2);
@@ -441,18 +450,21 @@ TEST(Remplacement, NoeudTestRemplacement) {
 }
 
 TEST(Deletion, NoeudTestDeletion) {
-    noeud* noeud1 = new noeud(NULL, NULL, NULL, 4, 1);
-    noeud* noeud2 = new noeud(NULL, NULL, NULL, 5, 2);
+    std::vector<int> vect1(4,4);
+    std::vector<int> vect2(5,5);
+    std::vector<int> vect3(3,3);
+    noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 1);
+    noeud* noeud2 = new noeud(NULL, NULL, NULL, vect2, 2);
 
     noeud1->insertion(noeud2);
 
-    noeud* noeud3 = new noeud(NULL, NULL, NULL, 3, 3);
+    noeud* noeud3 = new noeud(NULL, NULL, NULL, vect3, 3);
 
     noeud1->remplacement(noeud3);
 
     noeud3->deletion();
 
-    EXPECT_TRUE(noeud1->read_valeur() == 4);
+    EXPECT_TRUE(noeud1->read_valeur(0) == 4);
     EXPECT_TRUE(noeud1->read_id_fille1() == 0);
     EXPECT_TRUE(noeud1->read_id_fille2() == 0);
     EXPECT_TRUE(noeud1->read_id_mere() == 0);
@@ -461,7 +473,7 @@ TEST(Deletion, NoeudTestDeletion) {
     EXPECT_TRUE(noeud1->read_fille2() == NULL);
     EXPECT_TRUE(noeud1->read_mere() == NULL);
 
-    EXPECT_TRUE(noeud2->read_valeur() ==  5);
+    EXPECT_TRUE(noeud2->read_valeur(0) ==  5);
     EXPECT_TRUE(noeud2->read_id_fille1() == 0);
     EXPECT_TRUE(noeud2->read_id_fille2() == 0);
     EXPECT_TRUE(noeud2->read_id_mere() == 0);
@@ -470,7 +482,7 @@ TEST(Deletion, NoeudTestDeletion) {
     EXPECT_TRUE(noeud2->read_fille1() == NULL);
     EXPECT_TRUE(noeud2->read_fille2() == NULL);
 
-    EXPECT_TRUE(noeud3->read_valeur() == 3);
+    EXPECT_TRUE(noeud3->read_valeur(0) == 3);
     EXPECT_TRUE(noeud3->read_id_fille1() == 0);
     EXPECT_TRUE(noeud3->read_id_fille2() == 0);
     EXPECT_TRUE(noeud3->read_id_mere() == 0);
@@ -482,12 +494,14 @@ TEST(Deletion, NoeudTestDeletion) {
 }
 
 TEST(Operator, NoeudTestOperator) {
-    noeud* noeud1 = new noeud(NULL, NULL, NULL, 4, 1);
-    noeud* noeud2 = new noeud(NULL, NULL, NULL, 5, 2);
+    std::vector<int> vect1(4,4);
+    std::vector<int> vect2(5,5);
+    noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 1);
+    noeud* noeud2 = new noeud(NULL, NULL, NULL, vect2, 2);
 
     noeud2 = noeud1;
 
-    EXPECT_TRUE(noeud1->read_valeur() == noeud2->read_valeur());
+    EXPECT_TRUE(noeud1->read_valeur(0) == noeud2->read_valeur(0));
     EXPECT_TRUE(noeud1->read_id_fille1() == noeud2->read_id_fille1());
     EXPECT_TRUE(noeud1->read_id_fille2() == noeud2->read_id_fille2());
     EXPECT_TRUE(noeud1->read_id_mere() == noeud2->read_id_mere());
@@ -499,24 +513,28 @@ TEST(Operator, NoeudTestOperator) {
 }
 
 TEST(Put, NoeudTestPut) {
-    noeud* noeud1 = new noeud(NULL, NULL, NULL, 4, 1);
-    noeud* noeud2 = new noeud(NULL, NULL, NULL, 5, 2);
-    noeud* noeud3 = new noeud(NULL, NULL, NULL, 3, 3);
-    noeud* noeud4 = new noeud(NULL, NULL, NULL, 3, 4);
+    std::vector<int> vect1(4,4);
+    std::vector<int> vect2(5,5);
+    std::vector<int> vect3(3,3);
+    noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 1);
+    noeud* noeud2 = new noeud(NULL, NULL, NULL, vect2, 2);
+    noeud* noeud3 = new noeud(NULL, NULL, NULL, vect3, 3);
+    noeud* noeud4 = new noeud(NULL, NULL, NULL, vect3, 4);
 
     noeud1->put_fille1(noeud2);
     noeud1->put_fille2(noeud3);
     noeud1->put_mere(noeud4);
     noeud1->put_id(5);
-    noeud1->put_valeur(5);
+    noeud1->put_valeur(5,1);
 
-    EXPECT_TRUE(noeud1->read_valeur() == 5);
+    EXPECT_TRUE(noeud1->read_valeur(0) == 5);
+    EXPECT_TRUE(noeud1->read_valeur(1) == 5);
     EXPECT_TRUE(noeud1->read_id_fille1() == 2);
     EXPECT_TRUE(noeud1->read_id_fille2() == 3);
     EXPECT_TRUE(noeud1->read_id_mere() == 4);
     EXPECT_TRUE(noeud1->read_id() == 5);
 
-    EXPECT_TRUE(noeud2->read_valeur() ==  5);
+    EXPECT_TRUE(noeud2->read_valeur(0) ==  5);
     EXPECT_TRUE(noeud2->read_id_fille1() == 0);
     EXPECT_TRUE(noeud2->read_id_fille2() == 0);
     EXPECT_TRUE(noeud2->read_id_mere() == 5);
@@ -524,7 +542,7 @@ TEST(Put, NoeudTestPut) {
     EXPECT_TRUE(noeud2->read_fille1() == NULL);
     EXPECT_TRUE(noeud2->read_fille2() == NULL);
 
-    EXPECT_TRUE(noeud3->read_valeur() == 3);
+    EXPECT_TRUE(noeud3->read_valeur(0) == 3);
     EXPECT_TRUE(noeud3->read_id_fille1() == 0);
     EXPECT_TRUE(noeud3->read_id_fille2() == 0);
     EXPECT_TRUE(noeud3->read_id_mere() == 5);
@@ -532,7 +550,7 @@ TEST(Put, NoeudTestPut) {
     EXPECT_TRUE(noeud3->read_fille1() == NULL);
     EXPECT_TRUE(noeud3->read_fille2() == NULL);
 
-    EXPECT_TRUE(noeud4->read_valeur() == 3);
+    EXPECT_TRUE(noeud4->read_valeur(0) == 3);
     EXPECT_TRUE(noeud4->read_id_fille1() == 5);
     EXPECT_TRUE(noeud4->read_id_fille2() == 0);
     EXPECT_TRUE(noeud4->read_id_mere() == 0);
