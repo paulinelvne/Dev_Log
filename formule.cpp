@@ -267,3 +267,12 @@ std::string formule::formule_globale_str()
 	return(base_t[0]->read_str());//Je retourne le str_ du dernier noeud restant qui contient tous ceux de ses enfants
 	
 }
+int formule::fitness(std::vector<noeud> X, std::vector<noeud> Y, int number_of_observations)
+{
+int sum=0;
+	for (int n=0; n<number_of_observations; n++)
+	{
+	sum+=Y[i] - X[i].formule_globale();
+	}
+return sum;
+}

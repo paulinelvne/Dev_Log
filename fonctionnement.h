@@ -30,6 +30,9 @@ public:
 	//Synhtèse et affichage des résultats
 	void rendu(); 
 
+	//donne nom aux noeuds pour l'affichage :
+  	void nomme_noeuds();
+	
 protected: 
 
 	vector<noeud> sac_; 
