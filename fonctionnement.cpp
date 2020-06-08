@@ -116,13 +116,29 @@ vector<bool> fonctionnement::StockBool(string line){
 }
 
 //Lecture
-void fonctionnement::lecture(){
 
+void fonctionnement::lecture(string path_to_the_file){
+	ifstream fichier(path_to_the_file); // le chemin du fichier est à donner en paramètre pour une utilisation plus flexible de la fonction 
+	vector<vector<bool>> grille;  //vecteur contenant des vecteurs de booléens
+	vector<bool> T_bool;          //vecteur qui stockera successivement toutes les lignes de booléens avant d'être ajouté au vecteur 2D grille
+	int compteur_ligne = 0;
+	if(fichier){ //test la bonne ouverture du fichier
+		string ligne;
+		while(getline(fichier, ligne)){ //Tant qu'on n'est pas à la fin, on lit
+			T_bool = StockBool(ligne);  //prend en argument une ligne et renvoie un vecteur de booléens puis le stock dans T_bool
+			grille.push_back(T_bool); //ajoute T_bool à la grille
+			compteur_ligne ++;
+		}
+		this -> nb_col = compteur_ligne;
 
+	}
+	else{
+		cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << endl;
+	}
 
-
-
+	this -> genes_=grille; 
 }
+
 
 //Selection
 formule fonctionnement::selection(vector<formule> mutant, int n){
