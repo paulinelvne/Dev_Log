@@ -106,15 +106,12 @@ vector<bool> fonctionnement::StockBool(string line){
 	for(int j=23;j<T_string;j++){			//j=23 car format en-tête des lignes tjrs égale et de 23 caractères.
         	if(line[j]=='1'){
 			ret.push_back(1);
-			compteur ++;
 		}
 
 		if(line[j]=='0'){
 			ret.push_back(0);
-			compteur ++;
 		}
 	}
-	cout << compteur<< "   ";
 	return ret; 
 }
 
