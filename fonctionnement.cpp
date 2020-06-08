@@ -38,8 +38,8 @@ for (int i =0;i<577;i++)
     srand (time(NULL)); //init le random
 for (int j = 0;j<taille_formule;j++)
 {
-  int compteur = 577; // taille du sac_
-  int identifiant = 577; // num des id des noeuds
+  int compteur = nb_ligne; // taille du sac_
+  int identifiant = nb_ligne; // num des id des noeuds
   int n1 = rand()%compteur; //pioche entre 0 et le compteur ce qui sera 
   int n2 = rand()%compteur; // pareil, on remarque que n1 peut être égale à n2.
   int val_op = rand()%3 +3; // pioche les valeurs des opérateurs entre 3, 4 et 5.
