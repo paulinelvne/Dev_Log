@@ -37,7 +37,7 @@ protected:
 
 	vector<noeud>* sac_; 
 	int nb_col;
-	int nb_lignes;
+	int nb_ligne;
 	vector<vector<bool>> genes_;
 
 
