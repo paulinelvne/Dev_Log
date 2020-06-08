@@ -31,7 +31,7 @@ fonctionnement::~fonctionnement(){
 //Random
 vector<noeud>* fonctionnement::random(int num_column, int taille_formule, vector<vector<bool>> grille)
 {
-for (int i =0;i<577;i++)
+for (int i =0;i<nb_ligne;i++)
 {
   sac_->push_back(noeud(NULL,NULL,NULL,grille[i][num_column], i)) ;//créé et ajoute un noeud sans mère ni fille, dont sa valeur égale celle de la ligne et colonne correspondantes du fichier et d'identifiant égal à sa place dans le sac.
 }
@@ -68,7 +68,7 @@ return sac_;
 void fonctionnement::nomme_noeuds()
 {
   string str = "X";
-  for (int i=0;i<577;i++)
+  for (int i=0;i<sac_[0].size();i++)
   {
     if(sac_[0][i].read_valeur() == 3 )
     {
