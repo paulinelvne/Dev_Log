@@ -193,15 +193,15 @@ TEST(formule_globale_str, test3)
     EXPECT_EQ(f->formule_globale_str(0)=="(NOT(x1OR((x1ORx2)AND(NOTx1))))", 1);
 
 }
-/*
+
 TEST(formule_globale, test1)
 {
-    std::vector<int> vect1(3,3);
-    std::vector<int> vect2(4,4);
-    std::vector<int> vect3(0,0);
-    std::vector<int> vect4(1,1);
-    std::vector<int> vect5(5,5);
-    std::vector<int> vect6(0,0);
+    std::vector<int> vect1{3,3};
+    std::vector<int> vect2{4,4};
+    std::vector<int> vect3{0,0};
+    std::vector<int> vect4{1,1};
+    std::vector<int> vect5{5,5};
+    std::vector<int> vect6{0,0};
     noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 140); //AND
     noeud* noeud2 = new noeud(NULL, NULL, NULL , vect2, 133); //OR
     noeud* noeud3 = new noeud(NULL, NULL, NULL, vect3, 134); //x1
@@ -230,12 +230,12 @@ TEST(formule_globale, test1)
 
 TEST(formule_globale, test2)
 {
-    std::vector<int> vect1(3,3);
-    std::vector<int> vect2(4,4);
-    std::vector<int> vect3(0,0);
-    std::vector<int> vect4(1,1);
-    std::vector<int> vect5(5,5);
-    std::vector<int> vect6(0,0);
+    std::vector<int> vect1{3,3};
+    std::vector<int> vect2{4,4};
+    std::vector<int> vect3{0,0};
+    std::vector<int> vect4{1,1};
+    std::vector<int> vect5{5,5};
+    std::vector<int> vect6{0,0};
     noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 140); //AND
     noeud* noeud2 = new noeud(NULL, NULL, NULL , vect2, 133); //OR
     noeud* noeud3 = new noeud(NULL, NULL, NULL, vect3, 134); //x1
@@ -273,12 +273,12 @@ TEST(formule_globale, test2)
 
 TEST(formule_globale, test3)
 {
-    std::vector<int> vect1(3,3);
-    std::vector<int> vect2(4,4);
-    std::vector<int> vect3(0,0);
-    std::vector<int> vect4(1,1);
-    std::vector<int> vect5(5,5);
-    std::vector<int> vect6(0,0);
+    std::vector<int> vect1{3,3};
+    std::vector<int> vect2{4,4};
+    std::vector<int> vect3{0,0};
+    std::vector<int> vect4{1,1};
+    std::vector<int> vect5{5,5};
+    std::vector<int> vect6{0,0};
     noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 140); //AND
     noeud* noeud2 = new noeud(NULL, NULL, NULL , vect2, 133); //OR
     noeud* noeud3 = new noeud(NULL, NULL, NULL, vect3, 134); //x1
@@ -318,12 +318,12 @@ TEST(formule_globale, test3)
 
 TEST(formule_globale, test4)
 {
-    std::vector<int> vect1(3,3);
-    std::vector<int> vect2(4,4);
-    std::vector<int> vect3(0,0);
-    std::vector<int> vect4(1,1);
-    std::vector<int> vect5(5,5);
-    std::vector<int> vect6(0,0);
+    std::vector<int> vect1{3,3};
+    std::vector<int> vect2{4,4};
+    std::vector<int> vect3{0,0};
+    std::vector<int> vect4{1,1};
+    std::vector<int> vect5{5,5};
+    std::vector<int> vect6{0,0};
     noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 140); //AND
     noeud* noeud2 = new noeud(NULL, NULL, NULL , vect2, 133); //OR
     noeud* noeud3 = new noeud(NULL, NULL, NULL, vect3, 134); //x1
@@ -348,12 +348,12 @@ TEST(formule_globale, test4)
 
 TEST(formule_globale, test5)
 {
-    std::vector<int> vect1(3,3);
-    std::vector<int> vect2(4,4);
-    std::vector<int> vect3(0,0);
-    std::vector<int> vect4(1,1);
-    std::vector<int> vect5(5,5);
-    std::vector<int> vect6(0,0);
+    std::vector<int> vect1{3,3};
+    std::vector<int> vect2{4,4};
+    std::vector<int> vect3{0,0};
+    std::vector<int> vect4{1,1};
+    std::vector<int> vect5{5,5};
+    std::vector<int> vect6{0,0};
     noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 140); //AND
     noeud* noeud2 = new noeud(NULL, NULL, NULL , vect2, 133); //OR
     noeud* noeud3 = new noeud(NULL, NULL, NULL, vect4, 134); //x1
@@ -378,12 +378,12 @@ TEST(formule_globale, test5)
 
 TEST(formule_globale, test6)
 {
-    std::vector<int> vect1(3,3);
-    std::vector<int> vect2(4,4);
-    std::vector<int> vect3(0,0);
-    std::vector<int> vect4(1,1);
-    std::vector<int> vect5(5,5);
-    std::vector<int> vect6(0,0);
+    std::vector<int> vect1{3,3};
+    std::vector<int> vect2{4,4};
+    std::vector<int> vect3{0,0};
+    std::vector<int> vect4{1,1};
+    std::vector<int> vect5{5,5};
+    std::vector<int> vect6{0,0};
     noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 140); //AND
     noeud* noeud2 = new noeud(NULL, NULL, NULL , vect2, 133); //OR
     noeud* noeud3 = new noeud(NULL, NULL, NULL, vect4, 134); //x1
@@ -418,8 +418,7 @@ TEST(formule_globale, test6)
     formule* f = new formule(content, 1000);
     EXPECT_EQ(f->formule_globale(0), 0);
 
-}*/ 
-/*
+}
 
 TEST(Constructor, NoeudTestConstructor) {
     std::vector<int> vect1(4,4);
@@ -630,4 +629,4 @@ TEST(Put, NoeudTestPut) {
 TEST(Destructeur, StringTestDestructor){
 	TearDown();
 	TearDownTestCase();
-}*/
+}

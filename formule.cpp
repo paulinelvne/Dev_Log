@@ -9,9 +9,7 @@
 
 formule::formule()
 {
-	std::vector<int> vect1(4,4);
-    std::vector<int> vect2(5,5);
-    std::vector<int> vect3(3,3);
+	std::vector<int> vect1{4,4};
 	noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 1);
 	std::vector<noeud*> contenu_{noeud1}; 
 	int fitness_= 1000;
@@ -57,14 +55,12 @@ int transforme(int xA, int ope, int xB=36)
 	}
 	return(0);
 }
-/*
+
 int formule::formule_globale(int w)
 {
 	std::vector<noeud*> base_t ; // base de l'arbre
- std::cout<<"h"<<std::endl;
+
 	int i=0;
-	
-	
 	for(i=0; i< contenu_.size(); i++)
 	{
 		if((contenu_[i]->read_fille1() == NULL) && (contenu_[i]->read_fille2() == NULL))
@@ -72,12 +68,10 @@ int formule::formule_globale(int w)
 			base_t.push_back(contenu_[i]); // Je remplis la base de l'arbre avec les noeuds qui n'ont pas d'enfants
 			
 		}
-
 	}
-
 	
 	int a = base_t.size();
-std::cout<<"h"<<std::endl;
+
 	if((a==1) && (((base_t[0]->read_mere()))->read_valeur(w)==5)) // Cas où la base n'a qu'un noeud
 			{
 				return(transforme((base_t[0]->read_valeur(w)), 5));
@@ -92,26 +86,22 @@ std::cout<<"h"<<std::endl;
 		std::vector<int> a_supprimer; // indice des noeuds à supprimer à la fin du for
 		int i = 0;
 
+
 		int b = base_t.size()-1;
-		std::cout<<"w"<<std::endl;
+		
 		for(i=0; i < b ; i++)
 		{
-			std::cout<<"f1"<<std::endl;
-			std::cout<<base_t[0]->read_valeur(w)<< 31 << std::endl;
+			
 			if(((base_t[i]->read_mere())->read_id()) == ((base_t[i+1]->read_mere())->read_id()))
 			{
-				std::cout<<"i1"<<std::endl;
-				std::cout<<base_t[0]->read_valeur(w)<< 31 << std::endl;
 				(base_t[i]->read_mere())->put_valeur(transforme((base_t[i])->read_valeur(w), (base_t[i]->read_mere())->read_valeur(w), (base_t[i+1])->read_valeur(w)), w);
 				// la mère prend la valeur de ses deux noeuds 
 				noeud * a_push = base_t[i]->read_mere();
 				new_base.push_back(a_push);
 				a_supprimer.push_back(i);
 				a_supprimer.push_back(i+1);
-				std::cout<<base_t[0]->read_valeur(w)<< 31 << std::endl;
-				std::cout<<"f"<<std::endl;
 			}
-			
+
 			else if((base_t[i]->read_mere() != base_t[i+1]->read_mere()) && (((base_t[i]->read_mere()))->read_valeur(w)==5))
 			{
 				(base_t[i]->read_mere())->put_valeur(transforme(base_t[i]->read_valeur(w), 4), w);
@@ -132,7 +122,7 @@ std::cout<<"h"<<std::endl;
 				a_supprimer.erase(a_supprimer.begin());
 		}
 		
-		std::cout<<base_t[0]->read_valeur(w)<< 4 << std::endl;
+		
 		for(i=0; i < snb; i++)
 		{	
 				base_t.push_back(new_base[i]);
@@ -141,20 +131,18 @@ std::cout<<"h"<<std::endl;
 		new_base.clear();
 
 		a = a - asupsize + snb ;
-		std::cout<< "Un tour" << a << std::endl;
 	}
 		while(base_t[0]->read_mere() != NULL) // Je vérifie que le dernier noeud restant n'a pas en fait un NOT en parent
 	{
 		(base_t[0]->read_mere())->put_valeur(transforme(base_t[0]->read_valeur(w), (base_t[0]->read_mere())->read_valeur(w)), w);
 		base_t[0]=base_t[0]->read_mere();
+	}
 	
-	} 
-	std::cout<< "Un tour" << std::endl;
-	
-	return(0);
-	
-}*/
 
+	
+	return(base_t[0]->read_valeur(w));
+	
+}
 
 void formule::select_mutants(float taux_mut)
 {
