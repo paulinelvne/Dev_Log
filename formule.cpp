@@ -9,7 +9,10 @@
 
 formule::formule()
 {
-	noeud* noeud1 = new noeud(NULL, NULL, NULL, 4, 1);
+	std::vector<int> vect1(4,4);
+    std::vector<int> vect2(5,5);
+    std::vector<int> vect3(3,3);
+	noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 1);
 	std::vector<noeud*> contenu_{noeud1}; 
 	int fitness_= 1000;
 
@@ -54,12 +57,14 @@ int transforme(int xA, int ope, int xB=36)
 	}
 	return(0);
 }
-
-int formule::formule_globale()
+/*
+int formule::formule_globale(int w)
 {
 	std::vector<noeud*> base_t ; // base de l'arbre
-
+ std::cout<<"h"<<std::endl;
 	int i=0;
+	
+	
 	for(i=0; i< contenu_.size(); i++)
 	{
 		if((contenu_[i]->read_fille1() == NULL) && (contenu_[i]->read_fille2() == NULL))
@@ -67,13 +72,15 @@ int formule::formule_globale()
 			base_t.push_back(contenu_[i]); // Je remplis la base de l'arbre avec les noeuds qui n'ont pas d'enfants
 			
 		}
+
 	}
+
 	
 	int a = base_t.size();
-
-	if((a==1) && (((base_t[0]->read_mere()))->read_valeur()==5)) // Cas où la base n'a qu'un noeud
+std::cout<<"h"<<std::endl;
+	if((a==1) && (((base_t[0]->read_mere()))->read_valeur(w)==5)) // Cas où la base n'a qu'un noeud
 			{
-				return(transforme((base_t[0]->read_valeur()), 5));
+				return(transforme((base_t[0]->read_valeur(w)), 5));
 			}
 	
 	
@@ -85,26 +92,29 @@ int formule::formule_globale()
 		std::vector<int> a_supprimer; // indice des noeuds à supprimer à la fin du for
 		int i = 0;
 
-
-
 		int b = base_t.size()-1;
-		
+		std::cout<<"w"<<std::endl;
 		for(i=0; i < b ; i++)
 		{
-			
+			std::cout<<"f1"<<std::endl;
+			std::cout<<base_t[0]->read_valeur(w)<< 31 << std::endl;
 			if(((base_t[i]->read_mere())->read_id()) == ((base_t[i+1]->read_mere())->read_id()))
 			{
-				(base_t[i]->read_mere())->put_valeur(transforme((base_t[i])->read_valeur(), (base_t[i]->read_mere())->read_valeur(), (base_t[i+1])->read_valeur()));
+				std::cout<<"i1"<<std::endl;
+				std::cout<<base_t[0]->read_valeur(w)<< 31 << std::endl;
+				(base_t[i]->read_mere())->put_valeur(transforme((base_t[i])->read_valeur(w), (base_t[i]->read_mere())->read_valeur(w), (base_t[i+1])->read_valeur(w)), w);
 				// la mère prend la valeur de ses deux noeuds 
 				noeud * a_push = base_t[i]->read_mere();
 				new_base.push_back(a_push);
 				a_supprimer.push_back(i);
 				a_supprimer.push_back(i+1);
+				std::cout<<base_t[0]->read_valeur(w)<< 31 << std::endl;
+				std::cout<<"f"<<std::endl;
 			}
-
-			else if((base_t[i]->read_mere() != base_t[i+1]->read_mere()) && (((base_t[i]->read_mere()))->read_valeur()==5))
+			
+			else if((base_t[i]->read_mere() != base_t[i+1]->read_mere()) && (((base_t[i]->read_mere()))->read_valeur(w)==5))
 			{
-				(base_t[i]->read_mere())->put_valeur(transforme(base_t[i]->read_valeur(), 4));
+				(base_t[i]->read_mere())->put_valeur(transforme(base_t[i]->read_valeur(w), 4), w);
 				noeud * a_push = base_t[i]->read_mere();
 				new_base.push_back(a_push);
 				a_supprimer.push_back(i);
@@ -122,7 +132,7 @@ int formule::formule_globale()
 				a_supprimer.erase(a_supprimer.begin());
 		}
 		
-		
+		std::cout<<base_t[0]->read_valeur(w)<< 4 << std::endl;
 		for(i=0; i < snb; i++)
 		{	
 				base_t.push_back(new_base[i]);
@@ -131,18 +141,19 @@ int formule::formule_globale()
 		new_base.clear();
 
 		a = a - asupsize + snb ;
+		std::cout<< "Un tour" << a << std::endl;
 	}
 		while(base_t[0]->read_mere() != NULL) // Je vérifie que le dernier noeud restant n'a pas en fait un NOT en parent
 	{
-		(base_t[0]->read_mere())->put_valeur(transforme(base_t[0]->read_valeur(), (base_t[0]->read_mere())->read_valeur()));
+		(base_t[0]->read_mere())->put_valeur(transforme(base_t[0]->read_valeur(w), (base_t[0]->read_mere())->read_valeur(w)), w);
 		base_t[0]=base_t[0]->read_mere();
-	}
 	
-
+	} 
+	std::cout<< "Un tour" << std::endl;
 	
-	return(base_t[0]->read_valeur());
+	return(0);
 	
-}
+}*/
 
 
 void formule::select_mutants(float taux_mut)
@@ -163,20 +174,20 @@ void formule::select_mutants(float taux_mut)
 
 }
 
-std::string transforme_str(noeud* xA, noeud* ope, noeud* xB)
+std::string transforme_str(noeud* xA, noeud* ope, noeud* xB, int w)
 {
 	if(xB==NULL) // cas où on ne renseigne pas de xB => NOT
 	{
 		return("(" + ope->read_str()+ xA->read_str()+ ")");
 	}
-	else if((ope->read_valeur() == 3 )|| ( ope->read_valeur() == 4 )) // AND ou OR
+	else if((ope->read_valeur(w) == 3 )|| ( ope->read_valeur(w) == 4 )) // AND ou OR
 	{
 		return("("+ xA->read_str() + ope->read_str() + xB->read_str()+")");
 	}
 	
-}
+} 
 
-std::string formule::formule_globale_str()
+std::string formule::formule_globale_str(int w)
 {
 	std::vector<noeud*> base_t ; // base de l'arbre
 
@@ -193,7 +204,7 @@ std::string formule::formule_globale_str()
 	//std::cout << base_t.size() << std::endl ;
 	int a = base_t.size();
 
-	if((a==1) && (((base_t[0]->read_mere()))->read_valeur()==5)) // cas où il n'y a qu'un noeud dans la base
+	if((a==1) && (((base_t[0]->read_mere()))->read_valeur(w)==5)) // cas où il n'y a qu'un noeud dans la base
 			{
 				return(transforme_str(base_t[0], base_t[0]->read_mere())); // je retourne NOT ce noeud
 			}
@@ -225,7 +236,7 @@ std::string formule::formule_globale_str()
 
 			}
 
-			else if((base_t[i]->read_mere() != base_t[i+1]->read_mere()) && (((base_t[i]->read_mere()))->read_valeur()==5)) // cas du NOT
+			else if((base_t[i]->read_mere() != base_t[i+1]->read_mere()) && (((base_t[i]->read_mere()))->read_valeur(w)==5)) // cas du NOT
 			{
 				
 				(base_t[i]->read_mere())->put_str(transforme_str(base_t[i], base_t[i]->read_mere()));
@@ -267,6 +278,7 @@ std::string formule::formule_globale_str()
 	return(base_t[0]->read_str());//Je retourne le str_ du dernier noeud restant qui contient tous ceux de ses enfants
 	
 }
+/*
 int formule::fitness(std::vector<noeud> X, std::vector<noeud> Y, int number_of_observations)
 {
 int sum=0;
@@ -275,4 +287,4 @@ int sum=0;
 	sum+=Y[i] - X[i].formule_globale();
 	}
 return sum;
-}
+}*/ 

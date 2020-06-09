@@ -20,14 +20,14 @@ public:
 	formule(formule & autre);
 	~formule();
 	int fitness();
-	int formule_globale();
-	std::string formule_globale_str();
+	int formule_globale(int w);
+	std::string formule_globale_str(int w);
 	void select_mutants(float taux_mut);
 	
 
 	
 friend int transforme(int xA, int ope, int xB);
-friend std::string transforme_str(noeud* xA, noeud* ope, noeud* xB=NULL);
+friend std::string transforme_str(noeud* xA, noeud* ope, noeud* xB=NULL, int w=0);
 
 };
 #endif
