@@ -1,7 +1,7 @@
 using namespace std; 
-#include "noeud.cpp"
+#include "formule.h"
 #include <vector>
-#include "formule.cpp"
+
 
 class fonctionnement{
 
