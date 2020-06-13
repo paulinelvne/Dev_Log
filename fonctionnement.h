@@ -35,7 +35,9 @@ public:
 	
 protected: 
 
-	vector<noeud> sac_; 
+	vector<noeud>* sac_; 
+	int nb_col;
+	int nb_ligne;
 	vector<vector<bool>> genes_;
 
 
