@@ -6,6 +6,7 @@
 #include <string>
 #include <cstdlib>
 #include <algorithm>
+#include <string> 
 
 formule::formule()
 {
@@ -276,3 +277,60 @@ int sum=0;
 	}
 return sum;
 }*/ 
+
+std::string formule::retourne_liste_noeuds()
+{
+	int i=0;
+	int s=contenu_.size();
+	std::string str_retournee = "[";
+	for(i=0;i<s;i++)
+	{
+		if( contenu_[i]->read_id_mere() != 0 )
+		{	str_retournee += "(" ;
+			str_retournee += std::to_string(contenu_[i]->read_id_mere());
+			str_retournee += ", " ;
+			str_retournee += std::to_string(contenu_[i]->read_id()) ;
+			str_retournee += ") ,";
+		}
+
+	}
+	std::string str_retournee2 = str_retournee.substr(0, str_retournee.length() - 1);
+	str_retournee2 += "]";
+	return(str_retournee2);
+
+}
+
+std::string formule::retourne_tous_noeuds()
+{
+	int i=0;
+	int s=contenu_.size();
+	std::string str_retournee = "";
+	std::string couleur = "yellowgreen";
+	for(i=0;i<s;i++)
+	{
+		if(contenu_[i]->read_valeur(0)==3 || contenu_[i]->read_valeur(0)==4 || contenu_[i]->read_valeur(0)==5 )
+			{
+					couleur = "forestgreen";
+			}
+		else
+			{
+					couleur = "yellowgreen";
+			}
+		
+		str_retournee += std::to_string(contenu_[i]->read_id());
+		str_retournee += "=";
+		str_retournee += "(";
+		str_retournee += std::to_string(i);
+		str_retournee += ", ";
+		str_retournee += contenu_[i]->read_str();
+		str_retournee += ", ";
+		str_retournee += couleur;
+		str_retournee += ")";
+		str_retournee += "\n";
+
+	}
+	std::string str_retournee2 = str_retournee.substr(0, str_retournee.length() - 1);
+	return(str_retournee2);
+
+}
+

@@ -23,6 +23,8 @@ public:
 	int formule_globale(int w);
 	std::string formule_globale_str(int w);
 	void select_mutants(float taux_mut);
+	std::string retourne_liste_noeuds();
+	std::string retourne_tous_noeuds();
 	
 
 	
