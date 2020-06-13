@@ -29,67 +29,13 @@ fonctionnement::~fonctionnement(){
 
 
 //Random
-vector<noeud>* fonctionnement::random(int num_column, int taille_formule, vector<vector<bool>> grille)
-{
-for (int i =0;i<577;i++)
-{
-  sac_->push_back(noeud(NULL,NULL,NULL,grille[i][num_column], i)) ;//créé et ajoute un noeud sans mère ni fille, dont sa valeur égale celle de la ligne et colonne correspondantes du fichier et d'identifiant égal à sa place dans le sac.
-}
-    srand (time(NULL)); //init le random
-for (int j = 0;j<taille_formule;j++)
-{
-  int compteur = 577; // taille du sac_
-  int identifiant = 577; // num des id des noeuds
-  int n1 = rand()%compteur; //pioche entre 0 et le compteur ce qui sera 
-  int n2 = rand()%compteur; // pareil, on remarque que n1 peut être égale à n2.
-  int val_op = rand()%3 +3; // pioche les valeurs des opérateurs entre 3, 4 et 5.
+vector<noeud> fonctionnement::random(){
 
-  noeud nouveau_noeud1(NULL,NULL,NULL,0,0); //init noeud par défaut
 
-  nouveau_noeud1 = sac_[0][n1];
-  nouveau_noeud1.put_id(identifiant); // le copie, change mère + id mais ajoute pas au sac !!
-  identifiant ++;
-
-  noeud nouveau_noeud2(NULL,NULL,NULL,0,0); //init noeud par défaut
-  nouveau_noeud2 = sac_[0][n2]; // le copie, change mère + id mais ajoute pas au sac !!
-  nouveau_noeud1.put_id(identifiant); // le copie, change mère + id mais ajoute pas au sac !!
-  identifiant ++;
-
-  sac_[0].push_back(noeud(&nouveau_noeud1,&nouveau_noeud2,NULL, val_op, compteur)) ;
-  nouveau_noeud1.put_mere(&sac_[0][compteur]);
-  nouveau_noeud2.put_mere(&sac_[0][compteur]);
-
-  compteur ++;
-}
 return sac_;
-}
 
-//nomme_noeud
-void fonctionnement::nomme_noeuds()
-{
-  string str = "X";
-  for (int i=0;i<577;i++)
-  {
-    if(sac_[0][i].read_valeur() == 3 )
-    {
-      sac_[0][i].put_str("AND");
-    }
-    if(sac_[0][i].read_valeur() == 4 )
-    {
-      sac_[0][i].put_str("OR");
-    }
-    if(sac_[0][i].read_valeur() == 5 )
-    {
-      sac_[0][i].put_str("NOT");
-    }
-    else
-    {
-      std::string s = std::to_string(i);
-      str = str + s;
-    }
-  }
-}
 
+}
 
 //Lecture et stockage de chaque ligne du .csv
 
