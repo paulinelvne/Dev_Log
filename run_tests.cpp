@@ -31,8 +31,8 @@ TEST(transforme, NOT)
 }
 
 //Fonction amie Transforme_str
-
-TEST(transforme_str, AND) 
+/*
+// TEST(transforme_str, AND) 
 {
     std::vector<int> vect1(1,1);
     std::vector<int> vect2(0,0);
@@ -193,6 +193,7 @@ TEST(formule_globale_str, test3)
     EXPECT_EQ(f->formule_globale_str(0)=="(NOT(x1OR((x1ORx2)AND(NOTx1))))", 1);
 
 }
+*/
 
 TEST(formule_globale, test1)
 {
@@ -420,8 +421,11 @@ TEST(formule_globale, test6)
 
 }
 
+
+//Test Classe Noeud 
+
 TEST(Constructor, NoeudTestConstructor) {
-    std::vector<int> vect1(4,4);
+    std::vector<int> vect1{4,4};
 	noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 1);
     EXPECT_TRUE(noeud1->read_valeur(0) == 4);
     EXPECT_TRUE(noeud1->read_id_fille1() == 0);
@@ -435,8 +439,8 @@ TEST(Constructor, NoeudTestConstructor) {
 }
 
 TEST(Insertion, NoeudTestInsertion) {
-    std::vector<int> vect1(4,4);
-    std::vector<int> vect2(5,5);
+    std::vector<int> vect1{4,4};
+    std::vector<int> vect2{5,5};
     noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 1);
     noeud* noeud2 = new noeud(NULL, NULL, NULL, vect2, 2);
 
@@ -477,9 +481,9 @@ TEST(Viabilite, NoeudTestViabilite) {
 }
 
 TEST(Remplacement, NoeudTestRemplacement) {
-    std::vector<int> vect1(4,4);
-    std::vector<int> vect2(5,5);
-    std::vector<int> vect3(3,3);
+    std::vector<int> vect1{4,4};
+    std::vector<int> vect2{5,5};
+    std::vector<int> vect3{3,3};
     noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 1);
     noeud* noeud2 = new noeud(NULL, NULL, NULL, vect2, 2);
 
@@ -516,9 +520,9 @@ TEST(Remplacement, NoeudTestRemplacement) {
 }
 
 TEST(Deletion, NoeudTestDeletion) {
-    std::vector<int> vect1(4,4);
-    std::vector<int> vect2(5,5);
-    std::vector<int> vect3(3,3);
+    std::vector<int> vect1{4,4};
+    std::vector<int> vect2{5,5};
+    std::vector<int> vect3{3,3};
     noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 1);
     noeud* noeud2 = new noeud(NULL, NULL, NULL, vect2, 2);
 
@@ -560,8 +564,8 @@ TEST(Deletion, NoeudTestDeletion) {
 }
 
 TEST(Operator, NoeudTestOperator) {
-    std::vector<int> vect1(4,4);
-    std::vector<int> vect2(5,5);
+    std::vector<int> vect1{4,4};
+    std::vector<int> vect2{5,5};
     noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 1);
     noeud* noeud2 = new noeud(NULL, NULL, NULL, vect2, 2);
 
@@ -579,9 +583,9 @@ TEST(Operator, NoeudTestOperator) {
 }
 
 TEST(Put, NoeudTestPut) {
-    std::vector<int> vect1(4,4);
-    std::vector<int> vect2(5,5);
-    std::vector<int> vect3(3,3);
+    std::vector<int> vect1{4,4};
+    std::vector<int> vect2{5,5};
+    std::vector<int> vect3{3,3};
     noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 1);
     noeud* noeud2 = new noeud(NULL, NULL, NULL, vect2, 2);
     noeud* noeud3 = new noeud(NULL, NULL, NULL, vect3, 3);
@@ -626,7 +630,37 @@ TEST(Put, NoeudTestPut) {
 
 }
 
-TEST(Destructeur, StringTestDestructor){
+TEST(Destructeur, NoeudTestDestructor){
 	TearDown();
 	TearDownTestCase();
 }
+
+/*
+TEST(Fitness, FormuleTestFitness){
+    std::vector<int> vect1{0,1,1,1,0};
+    std::vector<int> vect2{0,1,0,1,1};
+
+    noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 1);
+    noeud* noeud2 = new noeud(NULL, NULL, NULL, vect2, 2);
+    std::vector<noeud*> content = {noeud2};
+    formule* f = new formule(content, 1000);
+
+    EXPECT_TRUE(fitness(f, noeud1, 5) == -2);
+    
+}
+*/
+
+TEST(Add_Fitness, FormuleTestAddFitness){
+    std::vector<int> vect1{0,1,1,1,0};
+    std::vector<int> vect2{0,1,0,1,1};
+
+    noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 1);
+    noeud* noeud2 = new noeud(NULL, NULL, NULL, vect2, 2);
+    std::vector<noeud*> content = {noeud1, noeud2};
+    formule* f = new formule(content, 1000);
+    f->add_fitness(20);
+
+    EXPECT_TRUE(f->get_fitness() == 20);
+    
+}
+

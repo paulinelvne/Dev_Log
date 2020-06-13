@@ -19,15 +19,19 @@ public:
 	formule(std::vector<noeud*> contenu, int fit);
 	formule(formule & autre);
 	~formule();
-	int fitness();
+	
 	int formule_globale(int w);
 	std::string formule_globale_str(int w);
 	void select_mutants(float taux_mut);
+	void add_fitness(int ft);
+	int get_fitness();
 	
 
 	
 friend int transforme(int xA, int ope, int xB);
-friend std::string transforme_str(noeud* xA, noeud* ope, noeud* xB=NULL, int w=0);
+//friend std::string transforme_str(noeud* xA, noeud* ope, noeud* xB=NULL, int w=0);
 
 };
+
+int fitness(formule* X, noeud* Y, int n);
 #endif
