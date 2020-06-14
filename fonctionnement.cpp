@@ -194,16 +194,3 @@ else
 
 
 
-//Rendu 
-void fonctionnement::rendu(){
-ofstream test("Fichier_rendu.txt");		//ouvre le flux : créer le fichier ou bien l'ouvre s'il existe déja
-if(test)  //On teste si tout est OK, si le fichier est bien ouvert
-{
-    test<<"formule du meilleur mutant  : "<<" formule " << endl;	//remplacer formule par la formule obtenue grâce à la fonction formule_globale_str() de la classe formule puis sélection pour prendre la meilleur formule.
-    test<<"Fitness du meilleur mutant : " << "fitness" << endl;		//remplacer fitness par la fitness obtenue grâce aux fonction selection et fitness()
-}
-else
-{
-    cout << "ERREUR: Impossible d'ouvrir le fichier." << endl;
-} 
-}; 
