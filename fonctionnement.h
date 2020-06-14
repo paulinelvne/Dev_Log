@@ -27,8 +27,8 @@ public:
 	//Sélection du meilleur mutant  
 	formule* selection(vector<formule*> mutant); 
 	
-	//Synhtèse et affichage des résultats
-	void rendu(); 
+	
+	
 
 	//donne nom aux noeuds pour l'affichage :
   	void nomme_noeuds();
@@ -50,3 +50,4 @@ protected:
 
 
 }; 
+void rendu(formule* mutant);
