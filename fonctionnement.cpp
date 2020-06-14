@@ -10,12 +10,12 @@ using namespace std;
 
 
 //Constructor
-/*
-fonctionnement::fonctionnement(vector<noeud> vect){
-	int Taille_vect=vect.size();
+
+fonctionnement::fonctionnement(vector<noeud*> vect){
+/*	int Taille_vect=vect.size();
 	for(int i=0;i<Taille_vect;i++){
 	sac_[i]=vect[i]; 
-	} 
+	} */
 
 	sac_=vect;
 };
@@ -26,17 +26,24 @@ fonctionnement::fonctionnement(vector<noeud> vect){
 
 //Destructeur
 fonctionnement::~fonctionnement(){
-    delete this-> sac_;
+  // delete this-> sac_;
 
 };
 
 
+//getsac
+
+vector<noeud*> fonctionnement::getsac(){
+	return sac_;
+};
+
+//getgenes
+vector<vector<bool>> fonctionnement::getgenes(){
+	return genes_;
+};
+
+/*
 //Random
-<<<<<<< HEAD
-vector<noeud> fonctionnement::random(){
-
-
-=======
 vector<noeud>* fonctionnement::random(int num_column, int taille_formule, vector<vector<bool>> grille)
 {
 for (int i =0;i<nb_ligne;i++)
@@ -69,15 +76,9 @@ for (int j = 0;j<taille_formule;j++)
 
   compteur ++;
 }
->>>>>>> 4eb3f1510589f697b934b7e5b74afd4f6769c8c1
 return sac_;
-<<<<<<< HEAD
-=======
 };
->>>>>>> 7d4e77e60350adfcc17d6e29069d6f35bbd81d91
 
-<<<<<<< HEAD
-=======
 //nomme_noeud
 void fonctionnement::nomme_noeuds()
 {
@@ -102,15 +103,9 @@ void fonctionnement::nomme_noeuds()
       str = str + s;
     }
   }
-<<<<<<< HEAD
-}
->>>>>>> 4eb3f1510589f697b934b7e5b74afd4f6769c8c1
-=======
 };
->>>>>>> 7d4e77e60350adfcc17d6e29069d6f35bbd81d91
 
-}
-
+*/
 //Lecture et stockage de chaque ligne du .csv
 
 vector<bool> fonctionnement::StockBool(string line){
@@ -120,7 +115,7 @@ vector<bool> fonctionnement::StockBool(string line){
 		T_string ++;
 		i++;
 	}
-	this->nb_ligne =T_string - 23;			//donne le nb de ligne du fichier d'entré, -23 car les 23 premiers caractères sont l'entête des lignes
+	this->nb_col =T_string;			//donne le nb de ligne du fichier d'entré, -23 car les 23 premiers caractères sont l'entête des lignes
 	vector<bool> ret;
 	int compteur = 0;
 	for(int j=23;j<T_string;j++){			//j=23 car format en-tête des lignes tjrs égale et de 23 caractères.
@@ -145,11 +140,13 @@ void fonctionnement::lecture(string path_to_the_file){
 	if(fichier){ //test la bonne ouverture du fichier
 		string ligne;
 		while(getline(fichier, ligne)){ //Tant qu'on n'est pas à la fin, on lit
-			T_bool = StockBool(ligne);  //prend en argument une ligne et renvoie un vecteur de booléens puis le stock dans T_bool
-			grille.push_back(T_bool); //ajoute T_bool à la grille
+			if(compteur_ligne !=0){
+				T_bool = StockBool(ligne);  //prend en argument une ligne et renvoie un vecteur de booléens puis le stock dans T_bool
+				grille.push_back(T_bool); //ajoute T_bool à la grille
+			}
 			compteur_ligne ++;
 		}
-		this -> nb_col = compteur_ligne;
+		this -> nb_ligne = compteur_ligne;
 
 	}
 	else{
@@ -164,13 +161,13 @@ void fonctionnement::lecture(string path_to_the_file){
 formule fonctionnement::selection(vector<formule> mutant, int n){
 	formule best_mutant = mutant[0];
 	for(int i = 1; i<=n; i++){
-		if(abs(mutant[i].fitness()) < abs(best_mutant.fitness() )){
+		if(abs(mutant[i].get_fitness()) < abs(best_mutant.get_fitness() )){
 			best_mutant = mutant[i];
 		}
 	}
 	return best_mutant;
 };
-
+/*
 //Rendu 
 void fonctionnement::rendu(){
 ofstream test("Fichier_rendu.txt");		//ouvre le flux : créer le fichier ou bien l'ouvre s'il existe déja
