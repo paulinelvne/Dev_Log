@@ -1,6 +1,5 @@
-#include<iostream>
+#include <iostream>
 #include "fonctionnement.h"
-#include<vector>
 #include <fstream>
 #include <vector>
 using namespace std; 
