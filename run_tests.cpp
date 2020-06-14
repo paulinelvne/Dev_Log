@@ -31,8 +31,8 @@ TEST(transforme, NOT)
 }
 
 //Fonction amie Transforme_str
-/*
-// TEST(transforme_str, AND) 
+
+TEST(transforme_str, AND) 
 {
     std::vector<int> vect1(1,1);
     std::vector<int> vect2(0,0);
@@ -44,9 +44,7 @@ TEST(transforme, NOT)
     noeud2->put_str("x1");
     noeud1->put_str("x2");
     EXPECT_EQ(transforme_str(noeud2, noeud3, noeud1)=="(x1ANDx2)", 1);
-
 }
-
 TEST(transforme_str, OR) 
 {
     std::vector<int> vect1(1,1);
@@ -59,7 +57,6 @@ TEST(transforme_str, OR)
     noeud2->put_str("x1");
     noeud1->put_str("x2");
     EXPECT_EQ(transforme_str(noeud2, noeud3, noeud1)=="(x1ORx2)", 1);
-
 }
 TEST(transforme_str, NOT) 
 {
@@ -71,10 +68,7 @@ TEST(transforme_str, NOT)
     noeud3->put_str("NOT");
     noeud2->put_str("x1");
     EXPECT_EQ(transforme_str(noeud2, noeud3)=="(NOTx1)", 1);}
-
 // fonction_globale_str
-
-
 TEST(formule_globale_str, test1)
 {
     std::vector<int> vect1(3,3);
@@ -89,13 +83,11 @@ TEST(formule_globale_str, test1)
     noeud* noeud4 = new noeud(NULL, NULL, NULL, vect4, 135); //x2
     noeud* noeud5 = new noeud(NULL, NULL, NULL, vect5, 136); //NOT
     noeud* noeud6 = new noeud(NULL, NULL, NULL, vect6, 137); //x1
-
     noeud2->put_mere(noeud1);
     noeud5->put_mere(noeud1);
     noeud3->put_mere(noeud2);
     noeud4->put_mere(noeud2);
     noeud6->put_mere(noeud5);
-
     noeud1->put_str("AND");
     noeud2->put_str("OR");
     noeud3->put_str("x1");
@@ -105,9 +97,7 @@ TEST(formule_globale_str, test1)
     std::vector<noeud*> content = {noeud1, noeud2, noeud3, noeud4, noeud5, noeud6};
     formule* f = new formule(content, 1000);
     EXPECT_EQ(f->formule_globale_str(0)=="((x1ORx2)AND(NOTx1))", 1);
-
 }
-
 TEST(formule_globale_str, test2)
 {
     std::vector<int> vect1(3,3);
@@ -124,8 +114,6 @@ TEST(formule_globale_str, test2)
     noeud* noeud6 = new noeud(NULL, NULL, NULL, vect6, 137); //x1
     noeud* noeud7 = new noeud(NULL, NULL, NULL, vect2, 138); //OR
     noeud* noeud8 = new noeud(NULL, NULL, NULL, vect6, 139); //x1
-
-
     noeud2->put_mere(noeud1);
     noeud5->put_mere(noeud1);
     noeud3->put_mere(noeud2);
@@ -133,7 +121,6 @@ TEST(formule_globale_str, test2)
     noeud6->put_mere(noeud5);
     noeud1->put_mere(noeud7);
     noeud8->put_mere(noeud7);
-
     noeud1->put_str("AND");
     noeud2->put_str("OR");
     noeud3->put_str("x1");
@@ -147,9 +134,7 @@ TEST(formule_globale_str, test2)
     std::vector<noeud*> content = {noeud1, noeud2, noeud3, noeud4, noeud5, noeud6, noeud7, noeud8};
     formule* f = new formule(content, 1000);
     EXPECT_EQ(f->formule_globale_str(0)=="(x1OR((x1ORx2)AND(NOTx1)))", 1);
-
 }
-
 TEST(formule_globale_str, test3)
 {
     std::vector<int> vect1(3,3);
@@ -167,7 +152,6 @@ TEST(formule_globale_str, test3)
     noeud* noeud7 = new noeud(NULL, NULL, NULL, vect2, 138); //OR
     noeud* noeud8 = new noeud(NULL, NULL, NULL, vect6, 139); //x1
     noeud* noeud9 = new noeud(NULL, NULL, NULL, vect5, 141); //NOT
-
     noeud2->put_mere(noeud1);
     noeud5->put_mere(noeud1);
     noeud3->put_mere(noeud2);
@@ -176,7 +160,6 @@ TEST(formule_globale_str, test3)
     noeud1->put_mere(noeud7);
     noeud8->put_mere(noeud7);
     noeud7->put_mere(noeud9);
-
     noeud1->put_str("AND");
     noeud2->put_str("OR");
     noeud3->put_str("x1");
@@ -191,9 +174,8 @@ TEST(formule_globale_str, test3)
     std::vector<noeud*> content = {noeud1, noeud2, noeud3, noeud4, noeud5, noeud6, noeud7, noeud8, noeud9};
     formule* f = new formule(content, 1000);
     EXPECT_EQ(f->formule_globale_str(0)=="(NOT(x1OR((x1ORx2)AND(NOTx1))))", 1);
-
 }
-*/
+
 
 TEST(formule_globale, test1)
 {
@@ -426,7 +408,7 @@ TEST(formule_globale, test6)
 
 TEST(Constructor, NoeudTestConstructor) {
     std::vector<int> vect1{4,4};
-	noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 1);
+    noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 1);
     EXPECT_TRUE(noeud1->read_valeur(0) == 4);
     EXPECT_TRUE(noeud1->read_id_fille1() == 0);
     EXPECT_TRUE(noeud1->read_id_fille2() == 0);
@@ -631,24 +613,46 @@ TEST(Put, NoeudTestPut) {
 }
 
 TEST(Destructeur, NoeudTestDestructor){
-	TearDown();
-	TearDownTestCase();
+    TearDown();
+    TearDownTestCase();
 }
 
-/*
+
 TEST(Fitness, FormuleTestFitness){
-    std::vector<int> vect1{0,1,1,1,0};
-    std::vector<int> vect2{0,1,0,1,1};
+    std::vector<int> vecte1{0,1};
 
-    noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 1);
-    noeud* noeud2 = new noeud(NULL, NULL, NULL, vect2, 2);
-    std::vector<noeud*> content = {noeud2};
+    std::vector<int> vect1{3,3};
+    std::vector<int> vect2{4,4};
+    std::vector<int> vect3{0,0};
+    std::vector<int> vect4{1,1};
+    std::vector<int> vect5{5,5};
+    std::vector<int> vect6{0,0};
+    noeud* noeud1 = new noeud(NULL, NULL, NULL, vect1, 140); //AND
+    noeud* noeud2 = new noeud(NULL, NULL, NULL , vect2, 133); //OR
+    noeud* noeud3 = new noeud(NULL, NULL, NULL, vect3, 134); //x1
+    noeud* noeud4 = new noeud(NULL, NULL, NULL, vect4, 135); //x2
+    noeud* noeud5 = new noeud(NULL, NULL, NULL, vect5, 136); //NOT
+    noeud* noeud6 = new noeud(NULL, NULL, NULL, vect6, 137); //x1
+    noeud* noeude1 = new noeud(NULL, NULL, NULL, vecte1, 1);
+    noeud2->put_mere(noeud1);
+    noeud5->put_mere(noeud1);
+    noeud3->put_mere(noeud2);
+    noeud4->put_mere(noeud2);
+    noeud6->put_mere(noeud5);
+    noeud1->put_str("AND");
+    noeud2->put_str("OR");
+    noeud3->put_str("x1");
+    noeud4->put_str("x2");
+    noeud5->put_str("NOT");
+    noeud6->put_str("x1");
+    
+    std::vector<noeud*> content{noeud1, noeud2, noeud3, noeud4, noeud5, noeud6};
     formule* f = new formule(content, 1000);
-
-    EXPECT_TRUE(fitness(f, noeud1, 5) == -2);
+    EXPECT_EQ( (fitness(f, noeude1, 2)== -1), 1);
+    //(fitness(f, noeude1, 2)== -2)
     
 }
-*/
+/*
 
 TEST(Add_Fitness, FormuleTestAddFitness){
     std::vector<int> vect1{0,1,1,1,0};
@@ -662,5 +666,4 @@ TEST(Add_Fitness, FormuleTestAddFitness){
 
     EXPECT_TRUE(f->get_fitness() == 20);
     
-}
-
+}*/ 

@@ -6,6 +6,7 @@
 #include <string>
 #include <cstdlib>
 #include <algorithm>
+#include <string> 
 
 formule::formule()
 {
@@ -15,7 +16,7 @@ formule::formule()
 	int fitness_= 1000;
 
 
-};
+}
 
 
 formule::formule(std::vector<noeud*> contenu, int fit)
@@ -24,20 +25,20 @@ formule::formule(std::vector<noeud*> contenu, int fit)
 	fitness_= fit;
 
 
-};
+}
 
 formule::formule(formule & autre)
 {
 	contenu_=autre.contenu_;
 	fitness_=autre.fitness_;
-};
+}
 
 
 
 formule::~formule()
 {
 	
-};
+}
 
 int transforme(int xA, int ope, int xB=36)
 {
@@ -54,7 +55,7 @@ int transforme(int xA, int ope, int xB=36)
 		return(xA || xB);
 	}
 	return(0);
-};
+}
 
 int formule::formule_globale(int w)
 {
@@ -142,7 +143,7 @@ int formule::formule_globale(int w)
 	
 	return(base_t[0]->read_valeur(w));
 	
-};
+}
 
 void formule::select_mutants(float taux_mut)
 {
@@ -160,8 +161,7 @@ void formule::select_mutants(float taux_mut)
 
 	}
 
-};
-/*
+}
 
 std::string transforme_str(noeud* xA, noeud* ope, noeud* xB, int w)
 {
@@ -173,8 +173,8 @@ std::string transforme_str(noeud* xA, noeud* ope, noeud* xB, int w)
 	{
 		return("("+ xA->read_str() + ope->read_str() + xB->read_str()+")");
 	}
-	
-};
+	return("erreur");
+} 
 
 std::string formule::formule_globale_str(int w)
 {
@@ -266,25 +266,87 @@ std::string formule::formule_globale_str(int w)
 	}
 	return(base_t[0]->read_str());//Je retourne le str_ du dernier noeud restant qui contient tous ceux de ses enfants
 	
-};
-*/
+}
 
-void formule::add_fitness(int ft){
+void formule::add_fitness(int ft)
+{
 	fitness_ = ft;
-};
+}
 
-int formule::get_fitness(){
+int formule::get_fitness()
+{
 	return this->fitness_;
 }
+
+
+std::string formule::retourne_liste_noeuds()
+{
+	int i=0;
+	int s=contenu_.size();
+	std::string str_retournee = "[";
+	for(i=0;i<s;i++)
+	{
+		if( contenu_[i]->read_id_mere() != 0 )
+		{	str_retournee += "(" ;
+			str_retournee += std::to_string(contenu_[i]->read_id_mere());
+			str_retournee += ", " ;
+			str_retournee += std::to_string(contenu_[i]->read_id()) ;
+			str_retournee += ") ,";
+		}
+
+	}
+	std::string str_retournee2 = str_retournee.substr(0, str_retournee.length() - 1);
+	str_retournee2 += "]";
+	return(str_retournee2);
+
+}
+
+std::string formule::retourne_tous_noeuds()
+{
+	int i=0;
+	int s=contenu_.size();
+	std::string str_retournee = "";
+	std::string couleur = "yellowgreen";
+	for(i=0;i<s;i++)
+	{
+		if(contenu_[i]->read_valeur(0)==3 || contenu_[i]->read_valeur(0)==4 || contenu_[i]->read_valeur(0)==5 )
+			{
+					couleur = "forestgreen";
+			}
+		else
+			{
+					couleur = "yellowgreen";
+			}
+		
+		str_retournee += std::to_string(contenu_[i]->read_id());
+		str_retournee += "=";
+		str_retournee += "(";
+		str_retournee += std::to_string(i);
+		str_retournee += ", ";
+		str_retournee += contenu_[i]->read_str();
+		str_retournee += ", ";
+		str_retournee += couleur;
+		str_retournee += ")";
+		str_retournee += "\n";
+
+	}
+	std::string str_retournee2 = str_retournee.substr(0, str_retournee.length() - 1);
+	return(str_retournee2);
+
+};
 
 int fitness(formule* X, noeud* Y, int n){
 
 int sum=0;
-
-for (int i = 0; i < n ; i++){
- 	sum += (Y->read_valeur(i) - X->formule_globale(i))*(Y->read_valeur(i) - X->formule_globale(i));
-}
-
-X->add_fitness(-sum);
+int tmp=0;
+int i=0;
+for (int i = 0; i < n ; i++)
+{
+ 	tmp = Y->read_valeur(i)- X->formule_globale(i);
+ 	sum += tmp*tmp;
+ }
+ 	X->add_fitness(-sum);
 return -sum;
 };
+//sum += (Y->read_valeur(i) - X->formule_globale(i))*(Y->read_valeur(i)- X->formule_globale(i));
+ 
