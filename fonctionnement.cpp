@@ -171,17 +171,23 @@ formule* fonctionnement::selection(vector<formule*> mutant){
 	}
 	return best_mutant;
 };
-/*
 
-formule fonctionnement::selection(vector<formule*> mutant){
-	formule best_mutant;
-	best_mutant = *(mutant[0]);
-	for(int i = 0; i<mutant.size(); i++){
-		if(abs((*(mutant[i])).get_fitness()) < abs(best_mutant.get_fitness() )){
-			best_mutant = *(mutant[i]);
-		}
-	}
-	return best_mutant;
+
+
+//Rendu
+void rendu(formule* mutant){
+string const nomFichier("C:/Users/romai/Documents/Nino_Info/Fichier_rendu"); //chemin à adapter pour chaque pc
+ofstream test(nomFichier.c_str());                //ouvre le flux : créer le fichier ou bien l'ouvre s'il existe déja
+if(test)  //On teste si tout est OK, si le fichier est bien ouvert
+{
+    string mut = mutant->formule_globale_str(0);
+    test<<"formule du meilleur mutant  : "<< mut << endl;
+    test<<"Fitness du meilleur mutant : " << mutant->get_fitness() << endl;
+}
+else
+{
+    cout << "ERREUR: Impossible d'ouvrir le fichier." << endl;
+}
 };
 
 
@@ -200,4 +206,4 @@ else
 {
     cout << "ERREUR: Impossible d'ouvrir le fichier." << endl;
 } 
-}; */ 
+}; 
