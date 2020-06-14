@@ -278,6 +278,10 @@ int formule::get_fitness()
 	return this->fitness_;
 }
 
+void operator=(formule* f){
+	*f.contenu_ = contenu_;
+	*f.fitness_ = fitness_;
+}
 
 std::string formule::retourne_liste_noeuds()
 {
