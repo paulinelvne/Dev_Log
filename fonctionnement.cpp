@@ -6,16 +6,19 @@
 using namespace std; 
 #include <stdio.h>
 #include <string.h>
+#include "formule.cpp"
+
 
 //Constructor
+/*
 fonctionnement::fonctionnement(vector<noeud> vect){
-/*	int Taille_vect=vect.size();
+	int Taille_vect=vect.size();
 	for(int i=0;i<Taille_vect;i++){
 	sac_[i]=vect[i]; 
 	} 
-*/
+
 	sac_=vect;
-}
+};
 
 //Fonctions
 
@@ -29,6 +32,11 @@ fonctionnement::~fonctionnement(){
 
 
 //Random
+<<<<<<< HEAD
+vector<noeud> fonctionnement::random(){
+
+
+=======
 vector<noeud>* fonctionnement::random(int num_column, int taille_formule, vector<vector<bool>> grille)
 {
 for (int i =0;i<nb_ligne;i++)
@@ -61,9 +69,15 @@ for (int j = 0;j<taille_formule;j++)
 
   compteur ++;
 }
+>>>>>>> 4eb3f1510589f697b934b7e5b74afd4f6769c8c1
 return sac_;
-}
+<<<<<<< HEAD
+=======
+};
+>>>>>>> 7d4e77e60350adfcc17d6e29069d6f35bbd81d91
 
+<<<<<<< HEAD
+=======
 //nomme_noeud
 void fonctionnement::nomme_noeuds()
 {
@@ -88,8 +102,14 @@ void fonctionnement::nomme_noeuds()
       str = str + s;
     }
   }
+<<<<<<< HEAD
 }
+>>>>>>> 4eb3f1510589f697b934b7e5b74afd4f6769c8c1
+=======
+};
+>>>>>>> 7d4e77e60350adfcc17d6e29069d6f35bbd81d91
 
+}
 
 //Lecture et stockage de chaque ligne du .csv
 
@@ -113,7 +133,7 @@ vector<bool> fonctionnement::StockBool(string line){
 		}
 	}
 	return ret; 
-}
+};
 
 //Lecture
 
@@ -137,7 +157,7 @@ void fonctionnement::lecture(string path_to_the_file){
 	}
 
 	this -> genes_=grille; 
-}
+};
 
 
 //Selection
@@ -162,5 +182,5 @@ if(test)  //On teste si tout est OK, si le fichier est bien ouvert
 else
 {
     cout << "ERREUR: Impossible d'ouvrir le fichier." << endl;
-}
-}; 
+} 
+}; */ 

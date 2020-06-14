@@ -173,7 +173,7 @@ std::string transforme_str(noeud* xA, noeud* ope, noeud* xB, int w)
 	{
 		return("("+ xA->read_str() + ope->read_str() + xB->read_str()+")");
 	}
-	
+	return("erreur");
 } 
 
 std::string formule::formule_globale_str(int w)
@@ -267,16 +267,17 @@ std::string formule::formule_globale_str(int w)
 	return(base_t[0]->read_str());//Je retourne le str_ du dernier noeud restant qui contient tous ceux de ses enfants
 	
 }
-/*
-int formule::fitness(std::vector<noeud> X, std::vector<noeud> Y, int number_of_observations)
+
+void formule::add_fitness(int ft)
 {
-int sum=0;
-	for (int n=0; n<number_of_observations; n++)
-	{
-	sum+=Y[i] - X[i].formule_globale();
-	}
-return sum;
-}*/ 
+	fitness_ = ft;
+}
+
+int formule::get_fitness()
+{
+	return this->fitness_;
+}
+
 
 std::string formule::retourne_liste_noeuds()
 {
@@ -332,5 +333,20 @@ std::string formule::retourne_tous_noeuds()
 	std::string str_retournee2 = str_retournee.substr(0, str_retournee.length() - 1);
 	return(str_retournee2);
 
-}
+};
 
+int fitness(formule* X, noeud* Y, int n){
+
+int sum=0;
+int tmp=0;
+int i=0;
+for (int i = 0; i < n ; i++)
+{
+ 	tmp = Y->read_valeur(i)- X->formule_globale(i);
+ 	sum += tmp*tmp;
+ }
+ 	X->add_fitness(-sum);
+return -sum;
+};
+//sum += (Y->read_valeur(i) - X->formule_globale(i))*(Y->read_valeur(i)- X->formule_globale(i));
+ 
