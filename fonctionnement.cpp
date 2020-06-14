@@ -167,17 +167,18 @@ formule fonctionnement::selection(vector<formule> mutant, int n){
 	}
 	return best_mutant;
 };
-/*
-//Rendu 
-void fonctionnement::rendu(){
-ofstream test("Fichier_rendu.txt");		//ouvre le flux : créer le fichier ou bien l'ouvre s'il existe déja
-if(test)  //On teste si tout est OK, si le fichier est bien ouvert
-{
-    test<<"formule du meilleur mutant  : "<<" formule " << endl;	//remplacer formule par la formule obtenue grâce à la fonction formule_globale_str() de la classe formule puis sélection pour prendre la meilleur formule.
-    test<<"Fitness du meilleur mutant : " << "fitness" << endl;		//remplacer fitness par la fitness obtenue grâce aux fonction selection et fitness()
-}
-else
-{
-    cout << "ERREUR: Impossible d'ouvrir le fichier." << endl;
-} 
-}; */ 
+
+
+//Rendu
+void rendu(vector<formule> mutant){
+	ofstream test("Fichier_rendu.txt");		//ouvre le flux : créer le fichier ou bien l'ouvre s'il existe déja
+	if(test)  //On teste si tout est OK, si le fichier est bien ouvert
+	{
+	//  test<<"formule du meilleur mutant  : "<< selection(mutant,mutant.size()).formule_globale_str(0) << endl;	//remplacer formule par la formule obtenue grâce à la fonction formule_globale_str() de la classe formule puis sélection pour prendre la meilleur formule.
+	// test<<"Fitness du meilleur mutant : " << selection(mutant,mutant.size()).get_fitness() << endl;		//remplacer fitness par la fitness obtenue grâce aux fonction selection et fitness()
+	}
+	else
+	{
+		cout << "ERREUR: Impossible d'ouvrir le fichier." << endl;
+	}
+};
