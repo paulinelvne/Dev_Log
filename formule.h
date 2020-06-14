@@ -26,8 +26,7 @@ public:
 	std::string retourne_tous_noeuds();
 	void add_fitness(int ft);
 	int get_fitness();
-	void operator=(formule* f);
-	
+	void operator=(formule f);
 
 	
 friend int transforme(int xA, int ope, int xB);

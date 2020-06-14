@@ -8,7 +8,7 @@ class fonctionnement{
 public:
 
 //Constructor
-	fonctionnement(vector<noeud> vect); 
+	fonctionnement(vector<noeud*> vect); 
 
 //Destructor
 	~fonctionnement();
@@ -22,18 +22,27 @@ public:
 	vector<bool> StockBool(string line);
 	
 	//Mise en forme des données recues 
-	void lecture();
+	void lecture(string path_to_the_file);
 	
 	//Sélection du meilleur mutant  
-	formule selection(vector<formule> mutant, int n); 
+	formule* selection(vector<formule*> mutant); 
 	
-	
+	//Synhtèse et affichage des résultats
+	void rendu(); 
+
 	//donne nom aux noeuds pour l'affichage :
   	void nomme_noeuds();
+  	
+  	//getter
+  	
+  	  //sac
+  	vector<noeud*> getsac();
+  	  //genes
+  	vector<vector<bool>> getgenes();
 	
 protected: 
 
-	vector<noeud>* sac_; 
+	vector<noeud*> sac_; 
 	int nb_col;
 	int nb_ligne;
 	vector<vector<bool>> genes_;
@@ -41,5 +50,3 @@ protected:
 
 
 }; 
-
-void rendu(vector<formule> mutant);

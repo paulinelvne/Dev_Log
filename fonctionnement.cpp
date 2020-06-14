@@ -1,5 +1,6 @@
-#include <iostream>
+#include<iostream>
 #include "fonctionnement.h"
+#include<vector>
 #include <fstream>
 #include <vector>
 using namespace std; 
@@ -77,24 +78,25 @@ for (int j = 0;j<taille_formule;j++)
 }
 return sac_;
 };
+*/
 
 //nomme_noeud
 void fonctionnement::nomme_noeuds()
 {
   string str = "X";
-  for (int i=0;i<sac_[0].size();i++)
+  for (int i=0;i<sac_.size();i++)
   {
-    if(sac_[0][i].read_valeur() == 3 )
+    if(sac_[i]->read_valeur(0) == 3 )
     {
-      sac_[0][i].put_str("AND");
+      sac_[i]->put_str("AND");
     }
-    if(sac_[0][i].read_valeur() == 4 )
+    if(sac_[i]->read_valeur(0) == 4 )
     {
-      sac_[0][i].put_str("OR");
+      sac_[i]->put_str("OR");
     }
-    if(sac_[0][i].read_valeur() == 5 )
+    if(sac_[i]->read_valeur(0) == 5 )
     {
-      sac_[0][i].put_str("NOT");
+      sac_[i]->put_str("NOT");
     }
     else
     {
@@ -104,7 +106,7 @@ void fonctionnement::nomme_noeuds()
   }
 };
 
-*/
+
 //Lecture et stockage de chaque ligne du .csv
 
 vector<bool> fonctionnement::StockBool(string line){
@@ -157,27 +159,45 @@ void fonctionnement::lecture(string path_to_the_file){
 
 
 //Selection
-formule fonctionnement::selection(vector<formule> mutant, int n){
-	formule best_mutant = mutant[0];
-	for(int i = 1; i<=n; i++){
-		if(abs(mutant[i].get_fitness()) < abs(best_mutant.get_fitness() )){
-			best_mutant = mutant[i];
+formule* fonctionnement::selection(vector<formule*> mutant){
+	std::cout<<(*mutant[0]).get_fitness()<<std::endl;
+	formule* best_mutant;
+	best_mutant = mutant[0];
+	std::cout<<(*(best_mutant)).get_fitness()<<std::endl;
+	for(int i = 0; i<mutant.size(); i++){
+		if(abs((*(mutant[i])).get_fitness()) < abs((*(best_mutant)).get_fitness() )){
+			best_mutant = (mutant[i]);
+		}
+	}
+	return best_mutant;
+};
+/*
+
+formule fonctionnement::selection(vector<formule*> mutant){
+	formule best_mutant;
+	best_mutant = *(mutant[0]);
+	for(int i = 0; i<mutant.size(); i++){
+		if(abs((*(mutant[i])).get_fitness()) < abs(best_mutant.get_fitness() )){
+			best_mutant = *(mutant[i]);
 		}
 	}
 	return best_mutant;
 };
 
 
-//Rendu
-void rendu(vector<formule> mutant){
-	ofstream test("Fichier_rendu.txt");		//ouvre le flux : créer le fichier ou bien l'ouvre s'il existe déja
-	if(test)  //On teste si tout est OK, si le fichier est bien ouvert
-	{
-	//  test<<"formule du meilleur mutant  : "<< selection(mutant,mutant.size()).formule_globale_str(0) << endl;	//remplacer formule par la formule obtenue grâce à la fonction formule_globale_str() de la classe formule puis sélection pour prendre la meilleur formule.
-	// test<<"Fitness du meilleur mutant : " << selection(mutant,mutant.size()).get_fitness() << endl;		//remplacer fitness par la fitness obtenue grâce aux fonction selection et fitness()
-	}
-	else
-	{
-		cout << "ERREUR: Impossible d'ouvrir le fichier." << endl;
-	}
-};
+
+
+
+//Rendu 
+void fonctionnement::rendu(){
+ofstream test("Fichier_rendu.txt");		//ouvre le flux : créer le fichier ou bien l'ouvre s'il existe déja
+if(test)  //On teste si tout est OK, si le fichier est bien ouvert
+{
+    test<<"formule du meilleur mutant  : "<<" formule " << endl;	//remplacer formule par la formule obtenue grâce à la fonction formule_globale_str() de la classe formule puis sélection pour prendre la meilleur formule.
+    test<<"Fitness du meilleur mutant : " << "fitness" << endl;		//remplacer fitness par la fitness obtenue grâce aux fonction selection et fitness()
+}
+else
+{
+    cout << "ERREUR: Impossible d'ouvrir le fichier." << endl;
+} 
+}; */ 

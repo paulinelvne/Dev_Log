@@ -40,6 +40,11 @@ formule::~formule()
 	
 }
 
+void formule::operator=(formule f){
+	f.contenu_ = contenu_;
+	f.fitness_ = fitness_;
+}
+
 int transforme(int xA, int ope, int xB=36)
 {
 	if(xB==36) // cas où on n'a pas renseigné de xB => signifie que l'opérateur est NOT
@@ -278,10 +283,6 @@ int formule::get_fitness()
 	return this->fitness_;
 }
 
-void operator=(formule* f){
-	*f.contenu_ = contenu_;
-	*f.fitness_ = fitness_;
-}
 
 std::string formule::retourne_liste_noeuds()
 {
